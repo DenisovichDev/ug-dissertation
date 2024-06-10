@@ -64,7 +64,8 @@ class AntColony:
         sorted_paths = sorted(all_paths, key=lambda x: x[1])
         for path, _ in sorted_paths[:n_best]:
             for move in path:
-                self.pheromone[move] += 1.0 / self.distances[move]
+                if self.distances[move]:
+                    self.pheromone[move] += 1.0 / self.distances[move]
                 
     def gen_path_dist(self, path):
         """
@@ -86,7 +87,8 @@ class AntColony:
         """
         all_paths = []
         for _ in range(self.n_ants):
-            path = self.gen_path(0)
+            start = random.randint(0, len(self.distances)-1)
+            path = self.gen_path(start)
             all_paths.append((path, self.gen_path_dist(path)))
         return all_paths
 
@@ -111,25 +113,28 @@ class AntColony:
 
     def pick_move(self, pheromone, dist, visited):
         """
-        Pick the next move based on pheromone levels and distances.
+            Pick the next move based on pheromone levels and distances.
 
-        :param pheromone: Current pheromone levels.
-        :param dist: Distances from the current node.
-        :param visited: Set of visited nodes.
-        :return: The next node to move to.
+            :param pheromone: Current pheromone levels.
+            :param dist: Distances from the current node.
+            :param visited: Set of visited nodes.
+            :return: The next node to move to.
         """
         # Copy pheromone levels and set pheromone of visited nodes to 0
         pheromone = np.copy(pheromone)
         pheromone[list(visited)] = 0
 
         # Calculate probabilities based on pheromone and heuristic information
-        row = pheromone ** self.alpha * ((1.0 / dist) ** self.beta)
+        with np.errstate(divide='ignore', invalid='ignore'):
+            heuristic = np.where(dist > 0, 1.0 / dist, 0)  # Set heuristic to 0 where distance is 0
+            row = pheromone ** self.alpha * (heuristic ** self.beta)
+            row = np.nan_to_num(row, nan=0.0, posinf=0.0, neginf=0.0)  # Replace NaN and inf values with 0
 
         # Normalize the probabilities
         norm_row = row / row.sum()
 
         # Check for NaN values in norm_row and handle the case where sum is zero
-        if np.isnan(norm_row).any():
+        if np.isnan(norm_row).any() or norm_row.sum() == 0:
             unvisited = list(set(self.all_inds) - visited)
             move = random.choice(unvisited)
         else:
