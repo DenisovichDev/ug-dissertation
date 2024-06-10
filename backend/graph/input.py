@@ -6,7 +6,9 @@ def create_adjacency_matrix(filename):
     # Read the file and collect edges
     edges = []
     nodes = set()
+    check = ""
     with open(filename, 'r') as file:
+        check = file.readline().strip()
         for line in file:
             node1, node2, weight = line.split()
             node1, node2 = int(node1), int(node2)
@@ -26,7 +28,8 @@ def create_adjacency_matrix(filename):
     for node1, node2, weight in edges:
         i, j = node_index[node1], node_index[node2]
         adjacency_matrix[i][j] = weight
-        adjacency_matrix[j][i] = weight  # Assuming an undirected graph
+        if check == "u":
+            adjacency_matrix[j][i] = weight  # Assuming an undirected graph
 
     return adjacency_matrix, sorted_nodes
 
