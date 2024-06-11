@@ -40,7 +40,8 @@ def get_graph(filename):
 if __name__ == "__main__":
     # Example usage
     filename = 'graph.txt'
-    adj_matrix, nodes = create_adjacency_matrix(get_graph(filename))
+    nodes, edges, check = get_graph(filename)
+    adj_matrix, nodes = create_adjacency_matrix(nodes, edges, check)
 
     print("Adjacency Matrix:")
     print(adj_matrix)
