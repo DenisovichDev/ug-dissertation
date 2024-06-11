@@ -1,20 +1,7 @@
 import numpy as np
 
 # Function to read the graph from a file and create an adjacency matrix
-def create_adjacency_matrix(filename):
-    filename = f"data/input/{filename}"
-    # Read the file and collect edges
-    edges = []
-    nodes = set()
-    check = ""
-    with open(filename, 'r') as file:
-        check = file.readline().strip()
-        for line in file:
-            node1, node2, weight = line.split()
-            node1, node2 = int(node1), int(node2)
-            weight = float(weight)
-            edges.append((node1, node2, weight))
-            nodes.update([node1, node2])
+def create_adjacency_matrix(nodes, edges, check):
     
     # Create a sorted list of nodes to maintain a consistent order
     sorted_nodes = sorted(nodes)
@@ -33,10 +20,27 @@ def create_adjacency_matrix(filename):
 
     return adjacency_matrix, sorted_nodes
 
+def get_graph(filename):
+    filename = f"data/input/{filename}"
+    # Read the file and collect edges
+    edges = []
+    nodes = set()
+    check = ""
+    with open(filename, 'r') as file:
+        check = file.readline().strip()
+        for line in file:
+            node1, node2, weight = line.split()
+            node1, node2 = int(node1), int(node2)
+            weight = float(weight)
+            edges.append((node1, node2, weight))
+            nodes.update([node1, node2])
+    return nodes, edges, check
+
+
 if __name__ == "__main__":
     # Example usage
     filename = 'graph.txt'
-    adj_matrix, nodes = create_adjacency_matrix(filename)
+    adj_matrix, nodes = create_adjacency_matrix(get_graph(filename))
 
     print("Adjacency Matrix:")
     print(adj_matrix)
