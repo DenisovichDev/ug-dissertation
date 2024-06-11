@@ -29,7 +29,7 @@ Our final year dissertation project. The topic, at least for now, "Metaheuristic
     - Params:
       - "graph": dictionary containing graph data
         - "nodes": list of nodes (nodes are integers)
-        - "edges": list of tuples (edge edge weight, weights can be floating), corresponding to edges
+        - "edges": list of tuples (node node weight, weights can be floating), corresponding to edges
         - "check": "u" if graph is undirected "d" otherwise
       - "params": dictionary containing data for
         - "n_ants": number of ants (int)
