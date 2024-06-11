@@ -11,6 +11,7 @@ def generate_weighted_graph(num_vertices, num_edges, filename="data/input/graph.
             edges.add((u, v, weight))
 
     with open(filename, 'w') as f:
+        f.write(f"u\n")
         for u, v, weight in edges:
             f.write(f"{u} {v} {weight}\n")
 
