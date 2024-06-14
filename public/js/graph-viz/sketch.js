@@ -1,7 +1,3 @@
-// The Nature of Code
-// Daniel Shiffman
-// http://natureofcode.com
-
 let { VerletPhysics2D, VerletParticle2D, VerletSpring2D } = toxi.physics2d;
 
 // Force directed graph,

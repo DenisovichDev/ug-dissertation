@@ -1,13 +1,13 @@
 class Particle extends VerletParticle2D {
-  constructor(x, y, r) {
-    super(x, y);
-    this.r = r;
-  }
+    constructor(x, y, r) {
+        super(x, y);
+        this.r = r;
+    }
 
-  show() {
-    fill(127);
-    stroke(0);
-    circle(this.x, this.y, this.r * 2);
-  }
+    show() {
+        fill(190);
+        stroke(0);
+        circle(this.x, this.y, this.r * 2);
+    }
 }
 

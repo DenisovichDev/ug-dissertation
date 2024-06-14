@@ -1,11 +1,3 @@
-// The Nature of Code
-// <http://www.shiffman.net/teaching/nature>
-// Spring 2010
-// Toxiclibs example: http://toxiclibs.org/
-
-// Force directed graph
-// Heavily based on: http://code.google.com/p/fidgen/
-
 class Cluster {
   // We initialize a Cluster with a number of nodes, a diameter, and centerpoint
   constructor(n, length) {
@@ -17,7 +9,7 @@ class Cluster {
       // We can't put them right on top of each other
       let x = width / 2 + random(-1, 1);
       let y = height / 2 + random(-1, 1);
-      this.particles.push(new Particle(x, y, 4));
+      this.particles.push(new Particle(x, y, 10));
     }
 
     // Connect all the nodes with a Spring
