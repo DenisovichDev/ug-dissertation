@@ -9,19 +9,21 @@ const getGraph = () => {
 };
 
 
-const graphInfoDiv = document.getElementById('graph-info');
+document.addEventListener('DOMContentLoaded', () => {
+    const graphInfoDiv = document.getElementById('graph-info');
 
-getGraph()
-    .then(response => {
-        if (response.success) {
-            const graphData = response.graphData;
-            const selectedModel = localStorage.getItem('selectedModel');
-            graphInfoDiv.innerHTML = `<p><strong>Graph Data:</strong> ${graphData}</p><p><strong>Selected Model:</strong> ${selectedModel}</p>`;
-        } else {
-            graphInfoDiv.innerHTML = `<p>Error retrieving graph data</p>`;
-        }
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
+    getGraph()
+        .then(response => {
+            if (response.success) {
+                const graphData = response.graphData;
+                const selectedModel = localStorage.getItem('selectedModel');
+                graphInfoDiv.innerHTML = `<p><strong>Graph Data:</strong> ${graphData}</p><p><strong>Selected Model:</strong> ${selectedModel}</p>`;
+            } else {
+                graphInfoDiv.innerHTML = `<p>Error retrieving graph data</p>`;
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
 
+});
