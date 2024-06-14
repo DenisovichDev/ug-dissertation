@@ -44,26 +44,17 @@ modelForm.addEventListener('submit', async (event) => {
         console.log(JSON.stringify(postData));
 
         // Send POST request to the /aco endpoint
-        fetch(ACO_URL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(postData)
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Success:', data);
-            // Redirect to show-graph.html or handle success response as needed
-            // window.location.href = 'show-graph.html';
-        })
-        .catch((error) => {
+        try {
+            const responseData = await makePostRequest(ACO_URL, postData);
+            localStorage.setItem('tspSolution', JSON.stringify(responseData))
+            console.log('Success:', responseData);
+            window.location.href = '/public/graph-output';
+        } catch (error) {
             console.error('Error:', error);
-        });
+        }
     }
 
-    localStorage.setItem('selectedModel', selectedModel);
-    // window.location.href = 'show-graph.html';
+    window.location.href = '/public/graph-output';
 
 
 
