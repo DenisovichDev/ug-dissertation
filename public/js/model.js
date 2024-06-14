@@ -5,7 +5,7 @@
 //     localStorage.setItem('selectedModel', selectedModel);
 //     window.location.href = '/public/graph-output/index.html';
 // });
-const ACO_URL = "http://0.0.0.0:8000/aco/"
+const ACO_URL = "http://0.0.0.0:8000/aco";
 
 const modelSelect = document.getElementById('model-select');
 const acoForm = document.getElementById('aco-form');
