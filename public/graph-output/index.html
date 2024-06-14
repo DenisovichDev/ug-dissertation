@@ -1,17 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Show Graph</title>
-    <link rel="stylesheet" href="/public/css/style.css">
-    <script src="/public/js/output.js" defer></script>
-</head>
-<body>
-    <div class="container">
-        <h1>Graph Information</h1>
-        <div id="graph-info"></div>
-    </div>
-</body>
-</html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/hapticdata/toxiclibsjs@0.3.2/build/toxiclibs.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/addons/p5.sound.min.js"></script> -->
+    <script src="../js/output.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <meta charset="utf-8" />
 
+  </head>
+  <body>
+    <main>
+        <div class="container">
+            <h1>Graph Information</h1>
+            <div id="graph-info"></div>
+        </div>
+    </main>
+    <script src="../js/graph-viz/sketch.js"></script>
+    <script src="../js/graph-viz/particle.js"></script>
+    <script src="../js/graph-viz/cluster.js"></script>
+    </body>
+</html>
