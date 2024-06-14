@@ -1,31 +1,30 @@
 const graphForm = document.getElementById('graph-form');
 
-// Simulating storage for graph data
-let graphData = '';
-
-
-// Simulate the /save-graph endpoint
-const saveGraph = (data) => {
-    return new Promise((resolve, reject) => {
-        graphData = data.graphData;
-        resolve({ success: true });
-    });
-};
 
 graphForm.addEventListener('submit', (event) => {
     event.preventDefault();
-    const graphInput = document.getElementById('graph-input').value;
 
-    saveGraph({ graphData: graphInput })
-        .then(response => {
-            if (response.success) {
-                window.location.href = 'model-selection.html';
-            } else {
-                alert('Error saving graph data');
-            }
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
+    const graphInput = document.getElementById('graph-input').value;
+    const nodeInput = document.getElementById('node-input').value;
+    const typeInput = document.getElementById('check-input').value;
+
+    const nodesArray = JSON.parse(nodeInput);
+    const graphArray = JSON.parse(graphInput);
+
+    const formData = {
+        graph: graphArray,
+        nodes: nodesArray,
+        type: typeInput
+    };
+
+
+    console.log(formData);
+
+    // Save the form data to local storage
+    localStorage.setItem('graphData', JSON.stringify(formData));
+
+    // Redirect to model selection page
+    window.location.href = '/public/home/model-selection.html';
+
 });
 

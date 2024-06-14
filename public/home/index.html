@@ -11,10 +11,23 @@
     <div class="container">
         <h1>Enter Graph Information</h1>
         <form id="graph-form">
-            <label for="graph-input">Graph (edge1,weight1,edge2):</label>
+            <label for="graph-input">Graph (node1, node2, edge):</label>
             <textarea id="graph-input" name="graph-input" rows="10" cols="30"></textarea>
             <br>
+
+            <label for="node-input">Nodes (node1, node2, ...):</label>
+            <textarea id="node-input" name="node-input"></textarea>
+            <br>
+
+            <label for="check">Type: </label>
+            <select name="check" id="check-input">
+                <option value="u">Undirected</option>
+                <option value="d">Directed</option>
+            </select>
+            <br>
+
             <button type="submit">Submit</button>
+
         </form>
     </div>
 </body>
