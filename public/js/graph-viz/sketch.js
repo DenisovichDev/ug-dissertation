@@ -27,37 +27,37 @@ function setup() {
 }
 
 function draw() {
-  // Update the physics world
-  physics.update();
+    // Update the physics world
+    physics.update();
 
-  background(255);
+    background(255);
 
-  if (frameCount % 120 == 0) {
-    cluster = new Cluster(int(random(2, 20)), random(10, height / 2));
-  }
+    if (frameCount % 120 == 0) {
+        cluster = new Cluster(int(random(2, 20)), random(80, height / 2));
+    }
 
-  // Display all points
-  if (showParticles) {
-    cluster.show();
-  }
+    // Display all points
+    if (showParticles) {
+        cluster.show();
+    }
 
-  // If we want to see the physics
-  if (showPhysics) {
-    cluster.showConnections();
-  }
+    // If we want to see the physics
+    if (showPhysics) {
+        cluster.showConnections();
+    }
 }
 
 // Key press commands
 function keyPressed() {
-  if (key == "c") {
-    showPhysics = !showPhysics;
+    if (key == "c") {
+        showPhysics = !showPhysics;
     if (!showPhysics) showParticles = true;
-  } else if (key == "p") {
-    showParticles = !showParticles;
+    } else if (key == "p") {
+        showParticles = !showParticles;
     if (!showParticles) showPhysics = true;
-  } else if (key == "n") {
-    physics.clear();
-    cluster = new Cluster(int(random(2, 20)), random(10, height / 2));
-  }
+    } else if (key == "n") {
+        physics.clear();
+        cluster = new Cluster(int(random(2, 20)), random(10, height / 2));
+    }
 }
 
