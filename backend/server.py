@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from graph.input import create_adjacency_matrix
 from models.aco.AntColony import AntColony
 from utils.convert_to_native_type import convert_numpy_types
@@ -6,6 +7,15 @@ from utils.convert_to_native_type import convert_numpy_types
 # fastapi run server.py
 
 app = FastAPI()
+
+# Configure CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
+)
 
 @app.post("/aco")
 async def aco(params: dict, graph: dict):
