@@ -12,14 +12,14 @@ def generate_weighted_graph(num_vertices, num_edges, filename="data/input/graph.
 
     with open(filename, 'w') as f:
         f.write(f"u\n")
-        print("Edges: ")
+        print("edges: ")
         print("[", end="")
         for u, v, weight in edges:
             f.write(f"{u} {v} {weight}\n")
-            print(f"({u}, {v}, {weight}),", end=" ")
+            print(f"[{u}, {v}, {weight}],", end=" ")
         print("]")
 
-    print("Nodes: ")
+    print("nodes: ")
     print("[", end="")
     for i in range(num_vertices):
         print(i, end=", ")
