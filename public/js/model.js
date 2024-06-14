@@ -1,11 +1,4 @@
-
-// modelForm.addEventListener('submit', (event) => {
-//     event.preventDefault();
-//     const selectedModel = document.getElementById('model-select').value;
-//     localStorage.setItem('selectedModel', selectedModel);
-//     window.location.href = '/public/graph-output/index.html';
-// });
-const ACO_URL = "http://0.0.0.0:8000/aco";
+const ACO_URL = "http://127.0.0.1:8000/aco";
 
 const modelSelect = document.getElementById('model-select');
 const acoForm = document.getElementById('aco-form');
@@ -20,7 +13,7 @@ modelSelect.addEventListener('change', () => {
 
 const modelForm = document.getElementById('model-form');
 
-modelForm.addEventListener('submit', (event) => {
+modelForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     const selectedModel = modelSelect.value;
 
