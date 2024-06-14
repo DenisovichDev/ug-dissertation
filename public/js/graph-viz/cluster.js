@@ -7,9 +7,10 @@ class Cluster {
     // Create the nodes
     for (let i = 0; i < n; i++) {
       // We can't put them right on top of each other
-      let x = width / 2 + random(-1, 1);
-      let y = height / 2 + random(-1, 1);
-      this.particles.push(new Particle(x, y, 10));
+      let x = width / 2 + random(-50, 50);
+      let y = height / 2 + random(-50, 50);
+      let vn = floor(random(n+1));
+      this.particles.push(new Particle(x, y, 10, vn));
     }
 
     // Connect all the nodes with a Spring
@@ -18,7 +19,9 @@ class Cluster {
       for (let j = i + 1; j < this.particles.length; j++) {
         let particle_j = this.particles[j];
         // A Spring needs two particles, a resting length, and a strength
-        physics.addSpring(new VerletSpring2D(particle_i, particle_j, length, 0.01));
+          if (random() > 0.5) {
+              physics.addSpring(new VerletSpring2D(particle_i, particle_j, length, 0.01));
+          }
       }
     }
   }

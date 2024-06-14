@@ -14,8 +14,15 @@ let cluster;
 let showPhysics = true;
 let showParticles = true;
 
+let solution, graphInfo;
+
+function preload() {
+    tspSolution = JSON.parse(localStorage.getItem('tspSolution'));
+    graphInfo = JSON.parse(localStorage.getItem('graphData'));
+}
+
 function setup() {
-    cnv = createCanvas(300, 300);
+    cnv = createCanvas(600, 600);
     cnv.id('graph-canvas');
     cnv.parent('graph-viz');
 
@@ -23,7 +30,11 @@ function setup() {
     physics = new VerletPhysics2D();
 
     // Spawn a new random graph
-    cluster = new Cluster(int(random(2, 20)), random(10, height / 2));
+    // cluster = new Cluster(int(random(2, 20)), random(10, height / 2));
+
+
+    // Make a graph
+    ipGraph = new Graph(graphInfo.nodes, graphInfo.graph, graphInfo.type == 'u');
 }
 
 function draw() {
@@ -32,18 +43,18 @@ function draw() {
 
     background(255);
 
-    if (frameCount % 120 == 0) {
-        cluster = new Cluster(int(random(2, 20)), random(80, height / 2));
-    }
+    // if (frameCount % 120 == 0) {
+    //     cluster = new Cluster(int(random(2, 20)), random(height / 3, height / 2));
+    // }
 
-    // Display all points
-    if (showParticles) {
-        cluster.show();
-    }
 
     // If we want to see the physics
     if (showPhysics) {
-        cluster.showConnections();
+        ipGraph.showConnections();
+    }
+    // Display all points
+    if (showParticles) {
+        ipGraph.show();
     }
 }
 
@@ -57,7 +68,7 @@ function keyPressed() {
     if (!showParticles) showPhysics = true;
     } else if (key == "n") {
         physics.clear();
-        cluster = new Cluster(int(random(2, 20)), random(10, height / 2));
+        // cluster = new Cluster(int(random(2, 20)), random(10, height / 2));
     }
 }
 
