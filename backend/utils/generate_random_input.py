@@ -26,6 +26,6 @@ def generate_weighted_graph(num_vertices, num_edges, filename="data/input/graph.
     print("]")
 
 # Example usage
-num_vertices = 200
-num_edges = 1000 # Adjust this number to make the graph larger
+num_vertices = 10
+num_edges = 20 # Adjust this number to make the graph larger
 generate_weighted_graph(num_vertices, num_edges)
