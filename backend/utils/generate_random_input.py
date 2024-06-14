@@ -1,6 +1,6 @@
 import random, sys
 
-def generate_weighted_graph(num_vertices, num_edges, filename="data/input/graph.txt"):
+def generate_weighted_graph(num_vertices, num_edges, filename="backend/data/input/graph.txt"):
     edges = set()
     
     while len(edges) < num_edges:

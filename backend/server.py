@@ -27,7 +27,7 @@ async def aco(params: dict, graph: dict):
         "cost": r[1]
     }
     response = convert_numpy_types(response)
-    with open("data/output/graph.txt", "w") as f:
+    with open("backend/data/output/graph.txt", "w") as f:
         f.write(f"{str(r[0])}\n")
         f.write(str(r[1]))
     return response
