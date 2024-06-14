@@ -14,11 +14,21 @@ class Graph {
             this.particles.push(new Particle(x, y, 10, node));
         });
 
-        this.edges.forEach((edge) => {
-            let p1 = this.particles[edge[0]];
-            let p2 = this.particles[edge[1]];
-            physics.addSpring(new VerletSpring2D(p1, p2, this.springLen, 0.01));
-        });
+        // this.edges.forEach((edge) => {
+        //     let p1 = this.particles[edge[0]];
+        //     let p2 = this.particles[edge[1]];
+        //     physics.addSpring(new VerletSpring2D(p1, p2, this.springLen, 0.01));
+        // });
+        // Connect all the nodes with a Spring
+        for (let i = 0; i < this.particles.length - 1; i++) {
+            let particle_i = this.particles[i];
+            for (let j = i + 1; j < this.particles.length; j++) {
+                let particle_j = this.particles[j];
+                // A Spring needs two particles, a resting length, and a strength
+                physics.addSpring(new VerletSpring2D(particle_i, particle_j, this.springLen, 0.01));
+            }
+        }
+        
     }
 
     // show all the nodes
