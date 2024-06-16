@@ -9,8 +9,8 @@ class Graph {
 
         // Create the nodes according the input
         this.nodes.forEach((node) => {
-            let x = width / 2 + random(- height / 4, height / 4);
-            let y = height / 2 + random(- height / 4, height / 4);
+            let x = width / 2 + random(-5, 5);
+            let y = height / 2 + random(-5, 5);
             this.particles.push(new Particle(x, y, 10, node));
         });
 
@@ -25,7 +25,7 @@ class Graph {
             for (let j = i + 1; j < this.particles.length; j++) {
                 let particle_j = this.particles[j];
                 // A Spring needs two particles, a resting length, and a strength
-                physics.addSpring(new VerletSpring2D(particle_i, particle_j, this.springLen, 0.01));
+                physics.addSpring(new VerletSpring2D(particle_i, particle_j, this.springLen, 0.002));
             }
         }
         
