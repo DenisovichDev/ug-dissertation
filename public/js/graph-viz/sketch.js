@@ -61,10 +61,13 @@ function draw() {
     // If we want to see the physics
     if (showPhysics) {
         ipGraph.showConnections();
+        opGraph.showConnections();
     }
     // Display all points
     if (showParticles) {
         ipGraph.show();
+        opGraph.show();
+        opGraph.showPath(40);
     }
 }
 

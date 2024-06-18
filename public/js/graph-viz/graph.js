@@ -66,4 +66,19 @@ class Graph {
             line(p1.x, p1.y, p2.x, p2.y);
         });
     }
+    
+    // Show TSP solution path
+    showPath(refreshEvery) {
+        if (this.path == null) return;
+        if (frameCount % refreshEvery !== 0) return;
+        // console.log(this.path);
+        // this.particles[this.path[this
+        this.particles[this.path[this.curr][0]].lit = false;
+        this.curr++;
+        if (this.curr >= this.path.length) {
+            this.curr = 0;
+        }
+        this.particles[this.path[this.curr][0]].lit = true;
+
+    }
 }
