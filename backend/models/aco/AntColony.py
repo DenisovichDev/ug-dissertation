@@ -43,11 +43,14 @@ class AntColony:
             :return: Tuple of the shortest path and its distance.
         """
         shortest_path = None
-        all_time_shortest_path = ("", np.inf)
+        all_time_shortest_path = ([], np.inf)
         for _ in tqdm(range(self.n_iterations), desc="running..."):
             all_paths = self.gen_all_paths()
             self.spread_pheronome(all_paths, self.n_best)
-            shortest_path = min(all_paths, key=lambda x: x[1])
+            try:
+                shortest_path = min(all_paths, key=lambda x: x[1])
+            except ValueError:
+                return ([], np.inf)
             if shortest_path[1] < all_time_shortest_path[1]:
                 all_time_shortest_path = shortest_path            
             self.pheromone *= self.decay
@@ -89,6 +92,10 @@ class AntColony:
         for _ in range(self.n_ants):
             start = random.randint(0, len(self.distances)-1)
             path = self.gen_path(start)
+            print(path)
+            # invalid path encountered
+            if not path:
+                continue
             all_paths.append((path, self.gen_path_dist(path)))
         return all_paths
 
@@ -104,7 +111,11 @@ class AntColony:
         visited.add(start)
         prev = start
         for _ in range(len(self.distances) - 1):
-            move = self.pick_move(self.pheromone[prev], self.distances[prev], visited)
+            try:
+                # no possible moves found
+                move = self.pick_move(self.pheromone[prev], self.distances[prev], visited)
+            except ValueError:
+                return 0
             path.append((prev, move))
             prev = move
             visited.add(move)
@@ -124,19 +135,28 @@ class AntColony:
         pheromone = np.copy(pheromone)
         pheromone[list(visited)] = 0
 
-        # Calculate probabilities based on pheromone and heuristic information
+        # Calculate heuristic
         with np.errstate(divide='ignore', invalid='ignore'):
             heuristic = np.where(dist > 0, 1.0 / dist, 0)  # Set heuristic to 0 where distance is 0
             row = pheromone ** self.alpha * (heuristic ** self.beta)
             row = np.nan_to_num(row, nan=0.0, posinf=0.0, neginf=0.0)  # Replace NaN and inf values with 0
 
+        # Set probabilities of unreachable nodes to 0
+        row[dist == 0] = 0
+
         # Normalize the probabilities
-        norm_row = row / row.sum()
+        row_sum = row.sum()
+        if row_sum == 0:
+            norm_row = np.zeros_like(row)
+        else:
+            norm_row = row / row_sum
 
         # Check for NaN values in norm_row and handle the case where sum is zero
-        if np.isnan(norm_row).any() or norm_row.sum() == 0:
-            unvisited = list(set(self.all_inds) - visited)
-            move = random.choice(unvisited)
+        if np.isnan(norm_row).any() or row_sum == 0:
+            unvisited = [node for node in self.all_inds if node not in visited and dist[node] > 0]
+            if not unvisited:
+                raise ValueError("No valid moves available. All nodes have been visited or are unreachable.")
+            move = np.random.choice(unvisited)
         else:
             move = np.random.choice(self.all_inds, 1, p=norm_row)[0]
 

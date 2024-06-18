@@ -22,6 +22,7 @@ async def aco(params: dict, graph: dict):
     graph = create_adjacency_matrix(graph["nodes"], graph["edges"], graph["check"])
     meta_h = AntColony(graph[0], params["n_ants"], params["n_best"], params["n_iterations"], params["decay"], params["alpha"], params["beta"])
     r = meta_h.run()
+    print(r[0])
     response = {
         "path": r[0],
         "cost": r[1]
