@@ -1,18 +1,34 @@
 class Graph {
     // Takes in nodes (int[]), edges (int[][]), isDirected (bool)
-    constructor(nodes, edges, isDirected) {
+    constructor(nodes, edges, isDirected, cpos, path,  initParticlePos) {
         this.nodes = nodes;
         this.edges = edges;
         this.isDirected = isDirected;
         this.particles = [];
         this.springLen = 150
+        this.cpos = cpos;
+        this.path = path;
+        this.initParticlePos = initParticlePos;
 
         // Create the nodes according the input
-        this.nodes.forEach((node) => {
-            let x = width / 2 + random(-5, 5);
-            let y = height / 2 + random(-5, 5);
-            this.particles.push(new Particle(x, y, 10, node));
-        });
+        if (!this.initParticlePos) {
+            this.nodes.forEach((node) => {
+                let x = this.cpos.x + random(-5, 5);
+                let y = this.cpos.y + random(-5, 5);
+                this.particles.push(new Particle(x, y, 10, node));
+            });
+        } else {
+            this.nodes.forEach((node, idx) => {
+                let x = this.cpos.x + this.initParticlePos[idx][0];
+                let y = this.cpos.y + this.initParticlePos[idx][1];
+                this.particles.push(new Particle(x, y, 10, node));
+            });
+        }
+        // path regarding settings
+        if (this.path) {
+            this.curr = 0;
+            console.log(this.curr);
+        }
 
         // this.edges.forEach((edge) => {
         //     let p1 = this.particles[edge[0]];

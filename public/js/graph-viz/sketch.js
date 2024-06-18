@@ -15,14 +15,16 @@ let showPhysics = true;
 let showParticles = true;
 
 let solution, graphInfo;
+let initParticlePos = [];
 
 function preload() {
     tspSolution = JSON.parse(localStorage.getItem('tspSolution'));
     graphInfo = JSON.parse(localStorage.getItem('graphData'));
+
 }
 
 function setup() {
-    cnv = createCanvas(600, 600);
+    cnv = createCanvas(w = 600, h = 600);
     cnv.id('graph-canvas');
     cnv.parent('graph-viz');
 
@@ -32,9 +34,17 @@ function setup() {
     // Spawn a new random graph
     // cluster = new Cluster(int(random(2, 20)), random(10, height / 2));
 
+    // Initial particle (node) positions relative to the centre
+    // So that both the graphs look the same
+    graphInfo.nodes.forEach(() => {
+        let x = random(-5, 5);
+        let y = random(-5, 5);
+        initParticlePos.push([x, y]);
+    });
 
     // Make a graph
-    ipGraph = new Graph(graphInfo.nodes, graphInfo.graph, graphInfo.type == 'u');
+    ipGraph = new Graph(graphInfo.nodes, graphInfo.graph, graphInfo.type == 'u', { x: 150, y: h / 2}, null, initParticlePos);
+    opGraph = new Graph(graphInfo.nodes, graphInfo.graph, graphInfo.type == 'u', { x: 400, y: h / 2}, tspSolution.path, initParticlePos);
 }
 
 function draw() {
