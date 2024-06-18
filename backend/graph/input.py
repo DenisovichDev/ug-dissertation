@@ -21,7 +21,7 @@ def create_adjacency_matrix(nodes, edges, check):
     return adjacency_matrix, sorted_nodes
 
 def get_graph(filename):
-    filename = f"data/input/{filename}"
+    filename = f"backend/data/input/{filename}"
     # Read the file and collect edges
     edges = []
     nodes = set()

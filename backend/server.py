@@ -5,7 +5,6 @@ from models.aco.AntColony import AntColony
 from utils.convert_to_native_type import convert_numpy_types
 from utils.generate_random_input import generate_complete_weighted_graph
 import numpy as np
-# fastapi run server.py
 
 app = FastAPI()
 
@@ -49,5 +48,5 @@ async def generate(vertices: dict):
 @app.post("/hello")
 async def hi(data: dict):
     return {
-        "message": f"hello {data['name']}"
+        "message": f"hi {data['name']}"
     }
