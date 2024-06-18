@@ -48,6 +48,7 @@ def generate_complete_weighted_graph(num_vertices, filename="backend/data/input/
     for i in range(num_vertices):
         print(i, end=", ")
     print("]")
+    return edges
 
 # Example usage
 if __name__ == "__main__":

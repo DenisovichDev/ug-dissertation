@@ -38,3 +38,7 @@ Our final year dissertation project. The topic, at least for now, "Metaheuristic
         - "decay": pheromone decay rate (float)
         - "alpha": pheromone importance factor (int)
         - "beta": heuristic importance factor (int)
+  - /generate_complete_graph
+    - Purpose: Generate a random complete graph for given number of vertices
+    - Params:
+      - "num_vertices": number of vertices in the graph

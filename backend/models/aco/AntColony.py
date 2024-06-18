@@ -44,13 +44,13 @@ class AntColony:
         """
         shortest_path = None
         all_time_shortest_path = ([], np.inf)
-        for _ in tqdm(range(self.n_iterations), desc="running..."):
+        for _ in range(self.n_iterations):
             all_paths = self.gen_all_paths()
             self.spread_pheronome(all_paths, self.n_best)
             try:
                 shortest_path = min(all_paths, key=lambda x: x[1])
             except ValueError:
-                return ([], np.inf)
+                shortest_path = ([], np.inf)
             if shortest_path[1] < all_time_shortest_path[1]:
                 all_time_shortest_path = shortest_path            
             self.pheromone *= self.decay
@@ -89,14 +89,15 @@ class AntColony:
             :return: List of all paths and their distances.
         """
         all_paths = []
-        for _ in range(self.n_ants):
+        for _ in range(self.n_ants): # ideally these ants should run in parallel (implement multi processing later)
             start = random.randint(0, len(self.distances)-1)
             path = self.gen_path(start)
-            print(path)
             # invalid path encountered
             if not path:
                 continue
-            all_paths.append((path, self.gen_path_dist(path)))
+            # ensure cycle ends with the same node
+            if path[-1][-1] == path[0][0]:
+                all_paths.append((path, self.gen_path_dist(path)))
         return all_paths
 
     def gen_path(self, start): 
