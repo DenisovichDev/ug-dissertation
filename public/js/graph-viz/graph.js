@@ -65,12 +65,14 @@ class Graph {
             stroke(0, 150);
             if (this.path) {
                 stroke(0, 50);
-                const targetEdge = [edge[0], edge[1]];
+                const targetEdges = [[edge[0], edge[1]], [edge[1], edge[0]]];
                 // checks if the is present in the path
-                const containsTarget = this.path.some(subArray => 
-                    subArray.length === targetEdge.length && subArray.every((value, index) => value === targetEdge[index])
+                const containsAnyTarget = targetEdges.some(target =>
+                    this.path.some(subArray =>
+                        subArray.length === target.length && subArray.every((value, index) => value === target[index])
+                    )
                 );
-                if (containsTarget) {
+                if (containsAnyTarget) {
                     stroke(255, 0, 0);
                 }
             }
