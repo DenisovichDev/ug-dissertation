@@ -25,14 +25,21 @@ def generate_weighted_graph(num_vertices, num_edges, filename="backend/data/inpu
         print(i, end=", ")
     print("]")
 
-def generate_complete_weighted_graph(num_vertices, filename="backend/data/input/graph.txt"):
+def generate_complete_weighted_graph(num_vertices, t, filename="backend/data/input/graph.txt"):
     edges = set()
+
 
     for i in range(num_vertices):
         for j in range(num_vertices):
-            if i != j:
-                weight = random.randint(1, 100)
-                edges.add((i, j, weight))
+            if t == "d":
+                if i != j:
+                    weight = random.randint(1, 100)
+                    edges.add((i, j, weight))
+            elif t == "u":
+                if j > i:
+                    weight = random.randint(1, 100)
+                    edges.add((i, j, weight))
+
 
     with open(filename, 'w') as f:
         f.write(f"u\n")

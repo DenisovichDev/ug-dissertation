@@ -38,9 +38,10 @@ async def aco(params: dict, graph: dict):
     return response
 
 @app.post("/generate_complete_graph")
-async def generate(vertices: dict):
-    vertices = vertices["num_vertices"]
-    graph = generate_complete_weighted_graph(vertices)
+async def generate(data: dict):
+    vertices = data["num_vertices"]
+    t = data["type"]
+    graph = generate_complete_weighted_graph(vertices, t)
     return {
         "graph": graph
     }
