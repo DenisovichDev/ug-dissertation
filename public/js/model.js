@@ -27,7 +27,7 @@ modelForm.addEventListener('submit', async (event) => {
             beta: JSON.parse(document.getElementById('beta').value)
         };
         localStorage.setItem('acoParams', JSON.stringify(formData));
-        localStorage.setItem('selectedModel', selectedModel);
+        localStorage.setItem('selectedModel', 'Ant Colony Optimization');
 
 
         // Retrieve graph data from localStorage

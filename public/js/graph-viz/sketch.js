@@ -43,8 +43,8 @@ function setup() {
     });
 
     // Make a graph
-    ipGraph = new Graph(graphInfo.nodes, graphInfo.graph, graphInfo.type == 'u', { x: w / 2 - 150, y: h / 2}, null, initParticlePos);
-    opGraph = new Graph(graphInfo.nodes, graphInfo.graph, graphInfo.type == 'u', { x: w / 2 + 150, y: h / 2}, tspSolution.path, initParticlePos);
+    ipGraph = new Graph("Input Graph", graphInfo.nodes, graphInfo.graph, graphInfo.type == 'u', { x: w / 2 - 150, y: h / 2}, null, initParticlePos);
+    opGraph = new Graph("Solution to TSP", graphInfo.nodes, graphInfo.graph, graphInfo.type == 'u', { x: w / 2 + 150, y: h / 2}, tspSolution.path, initParticlePos);
 }
 
 function draw() {
@@ -68,6 +68,8 @@ function draw() {
         ipGraph.show();
         opGraph.show();
         opGraph.showPath(40);
+        ipGraph.showLabel();
+        opGraph.showLabel();
     }
 }
 

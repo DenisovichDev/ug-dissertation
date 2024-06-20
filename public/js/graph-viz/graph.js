@@ -1,6 +1,7 @@
 class Graph {
     // Takes in nodes (int[]), edges (int[][]), isDirected (bool)
-    constructor(nodes, edges, isDirected, cpos, path, initParticlePos) {
+    constructor(label, nodes, edges, isDirected, cpos, path, initParticlePos) {
+        this.label = label;
         this.nodes = nodes;
         this.edges = edges;
         this.isDirected = isDirected;
@@ -78,6 +79,24 @@ class Graph {
             }
             line(p1.x, p1.y, p2.x, p2.y);
         });
+    }
+
+    showLabel() {
+        this.lx = this.cpos.x;
+        // y would be under the lowest node
+        let lowestY = this.cpos.y
+        this.particles.forEach((p) => {
+            if (lowestY < p.y) {
+                lowestY = p.y;
+            }
+        })
+        this.ly = lowestY + 70;
+        push();
+        textSize(22);
+        rectMode(CENTER);
+        textAlign(CENTER);
+        text(this.label, this.lx, this.ly, this.label.length * 15, 60);
+        pop();
     }
     
     // Show TSP solution path
