@@ -42,6 +42,7 @@ Our final year dissertation project. The topic, at least for now, "Metaheuristic
     - Purpose: Generate a random complete graph for given number of vertices
     - Params:
       - "num_vertices": number of vertices in the graph
+      - "type": type of graph (u/d)
 
 ## How To Run
 
