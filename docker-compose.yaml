@@ -12,5 +12,5 @@ services:
       - type: bind
         source: ./
         target: /Users/sagnik/Work and Research/Math/Projects/ug-dissertation
-    command: sh -c "fastapi dev --host 0.0.0.0 backend/server.py && python3 -m http.server 3000"
+    command: sh -c "fastapi dev --host 0.0.0.0 backend/server.py & python3 -m http.server 3000"
     
