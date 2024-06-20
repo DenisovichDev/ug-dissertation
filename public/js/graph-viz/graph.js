@@ -1,6 +1,6 @@
 class Graph {
     // Takes in nodes (int[]), edges (int[][]), isDirected (bool)
-    constructor(nodes, edges, isDirected, cpos, path,  initParticlePos) {
+    constructor(nodes, edges, isDirected, cpos, path, initParticlePos) {
         this.nodes = nodes;
         this.edges = edges;
         this.isDirected = isDirected;
@@ -57,12 +57,23 @@ class Graph {
     // show the connections
     // NOTE: Add directed
     showConnections() {
-        stroke(0, 150);
         strokeWeight(2);
         
         this.edges.forEach((edge) => {
             let p1 = this.particles[edge[0]];
             let p2 = this.particles[edge[1]];
+            stroke(0, 150);
+            if (this.path) {
+                stroke(0, 50);
+                const targetEdge = [edge[0], edge[1]];
+                // checks if the is present in the path
+                const containsTarget = this.path.some(subArray => 
+                    subArray.length === targetEdge.length && subArray.every((value, index) => value === targetEdge[index])
+                );
+                if (containsTarget) {
+                    stroke(255, 0, 0);
+                }
+            }
             line(p1.x, p1.y, p2.x, p2.y);
         });
     }
