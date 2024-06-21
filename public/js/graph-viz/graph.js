@@ -28,7 +28,7 @@ class Graph {
         // path regarding settings
         if (this.path) {
             this.curr = 0;
-            console.log(this.curr);
+            this.springOnlyInPath = false;
         }
 
         // this.edges.forEach((edge) => {
@@ -113,4 +113,19 @@ class Graph {
         this.particles[this.path[this.curr][0]].lit = true;
 
     }
+
+    // Toggle springOnlyInPath
+    // toggleSpring() {
+    //     if (this.path == null) return;
+    //     this.springOnlyInPath = !this.springOnlyInPath;
+        
+    //     if (this.springOnlyInPath) {
+    //         physics.springs.forEach((spr) => {
+    //             if (this.path.includes([spr.a, spr.b])) {
+    //                 return;
+    //             }
+    //             physics.removeSpring(spr);
+    //         });
+    //     }
+    // }
 }
