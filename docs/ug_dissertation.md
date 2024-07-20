@@ -2,8 +2,7 @@
 author: Sagnik Chakraborty, Bhaswar Chakraborty
 date: Department of Computer Science
 title: Comparative Study of Metaheuristic Models for Solving Travelling Salesperson Problem
-abstract: ### Abstract
-The Traveling Salesman Problem (TSP) is a classic optimization challenge that has been extensively studied due to its NP-hard nature and practical applications in various fields. This project investigates and compares the performance of five metaheuristic algorithms—Ant Colony Optimization (ACO), Particle Swarm Optimization (PSO), Artificial Bee Colony (ABC), Simulated Annealing (SA), and Genetic Algorithm (GA)—in solving the TSP. Each algorithm's efficacy is evaluated based on solution quality and convergence speed. The project includes a user-friendly frontend interface allowing users to input the graph and visualize the optimal path alongside convergence charts. This comprehensive comparison aims to provide insights into the strengths and weaknesses of each metaheuristic approach, guiding future research and practical applications in optimization problems.
+abstract: The Traveling Salesman Problem (TSP) is a classic optimization challenge that has been extensively studied due to its NP-hard nature and practical applications in various fields. This project investigates and compares the performance of five metaheuristic algorithms—Ant Colony Optimization (ACO), Particle Swarm Optimization (PSO), Artificial Bee Colony (ABC), Simulated Annealing (SA), and Genetic Algorithm (GA)—in solving the TSP. Each algorithm's efficacy is evaluated based on solution quality and convergence speed. The project includes a user-friendly frontend interface allowing users to input the graph and visualize the optimal path alongside convergence charts. This comprehensive comparison aims to provide insights into the strengths and weaknesses of each metaheuristic approach, guiding future research and practical applications in optimization problems.
 geometry:
 - margin=1in
 fontsize: 11pt
@@ -118,6 +117,8 @@ In this project we aim to see how metaheursitic models fare against these tradit
 
 Each of these metaheuristic algorithms has been extensively studied and applied to different complex problems in varied domains, demonstrating varying degrees of success. Numerous comparative studies have been conducted to evaluate their performance on different instances of the TSP, providing valuable insights into their strengths and weaknesses. This project builds on this rich body of work by implementing and comparing these five metaheuristic algorithms in a unified framework, providing a comprehensive evaluation of their performance on the TSP.
 
+\newpage
+
 # Metaheuristics
 
 Metaheuristics are high-level algorithmic frameworks designed to solve complex optimization problems by guiding the search process to explore and exploit the solution space effectively. Unlike exact algorithms that guarantee finding an optimal solution, metaheuristics aim to find good enough solutions within a reasonable timeframe, making them particularly useful for large-scale and NP-hard problems like the Traveling Salesman Problem (TSP).
@@ -167,22 +168,22 @@ The TSP can be formally defined as follows:
 - Input: A list of cities, along with the distances (or costs) between each pair of cities.
 - Objective: Find the shortest possible route that visits each city exactly once and returns to the starting city.
 
-In mathematical terms, given a set of \(n\) cities, the goal is to find a permutation \(\pi\) of the cities that minimizes the total travel distance:
+In mathematical terms, given a set of $n$ cities, the goal is to find a permutation $\pi$ of the cities that minimizes the total travel distance:
 
-\[
+$$
 \min_{\pi} \left( \sum_{i=1}^{n-1} d(\pi(i), \pi(i+1)) + d(\pi(n), \pi(1)) \right)
-\]
+$$
 
-where \(d(i, j)\) is the distance between city \(i\) and city \(j\).
+where $d(i, j)$ is the distance between city $i$ and city $j$.
 
 ## Types of TSP
 
 1. Symmetric TSP (STSP):
-   - Description: The distance between two cities is the same in both directions, i.e., \(d(i, j) = d(j, i)\).
+   - Description: The distance between two cities is the same in both directions, i.e., $d(i, j) = d(j, i)$.
    - Applications: Common in scenarios where the travel cost or distance does not depend on the direction, such as road networks.
 
 2. Asymmetric TSP (ATSP):
-   - Description: The distance between two cities may differ based on the direction of travel, i.e., \(d(i, j) \neq d(j, i)\).
+   - Description: The distance between two cities may differ based on the direction of travel, i.e., $d(i, j) \neq d(j, i)$.
    - Applications: Relevant in logistics and transportation problems where factors like one-way streets or different travel times affect the distance.
 
 3. Dynamic TSP:
@@ -272,12 +273,19 @@ Short explanation of architecture
 
 ### Assimilated Architecture
 
+\newpage
+
 # Results and Comparative Study
 
+\newpage
 
 # Implementation 
 
+\newpage
+
 # Scope for Future Research and Conclusion
+
+\newpage
 
 # References
 
