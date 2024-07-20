@@ -14,6 +14,7 @@ header-includes: |
     \usepackage{rotating}
     \usepackage{algorithm}
     \usepackage{algpseudocode}
+    \usepackage{graphicx}
     \input{styles.tikzstyles}
     \usepackage[document]{ragged2e}
 ---
@@ -67,6 +68,12 @@ Brief description of models that we use
 ## User Interface Description
 
 ## Data-flow Diagram
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/DFD-0.pdf}
+    \caption{Level-0 Data Flow Diagram of the project}
+\end{figure}
 
 ## System Design
 
