@@ -504,6 +504,7 @@ The frontend on receiving the response sketches the graph and visualises the pat
 This project successfully implements five metaheuristic models—Ant Colony Optimization, Particle Swarm Optimization, Artificial Bee Colony, Simulated Annealing, and Genetic Algorithms—to solve the Traveling Salesman Problem. The backend processes the graph data, applies the algorithms, and provides the best path solution, which is then visualized on the frontend.
 
 Key achievements include:
+
 - **Algorithm Implementation**: Successfully implemented and integrated five distinct metaheuristic algorithms to solve the TSP.
 - **Modular Design**: Developed a modular code structure that separates concerns between data handling, algorithm processing, and visualization.
 - **Interactive Frontend**: Created an interactive frontend for graph input, solution visualization, and convergence chart display.
