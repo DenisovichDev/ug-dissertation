@@ -240,13 +240,75 @@ The TSP's importance lies in its applicability across diverse fields and its rol
 
 ## Ant Colony Optimization
 
-### Description
+#### Description
 
-### Mathematical Basis
+Ant Colony Optimization (ACO) is a metaheuristic inspired by the foraging behavior of ants. Real ants deposit pheromones on paths they travel, which guides other ants to food sources. Similarly, ACO uses a population of artificial ants that cooperate to find good solutions to optimization problems by depositing virtual pheromones on paths in a solution space.
 
-### Metaphor
+#### Mathematical Basis
 
-### Algorithm
+The mathematical foundation of ACO involves the use of probabilistic transition rules to construct solutions and the pheromone update mechanism. The key components are:
+
+1. Pheromone Trail ($(\tau_{ij})): Represents the desirability of moving from node $(i) to node $(j).
+2. Heuristic Information ($(\eta_{ij})): Represents the desirability of choosing node $(j) when at node $(i), often inversely proportional to the distance for TSP.
+3. Probability of Transition: The probability $(P_{ij}) that an ant moves from node $(i) to node $(j) is given by:
+
+$$( P_{ij}(t) = \frac{[\tau_{ij}(t)]^\alpha [\eta_{ij}]^\beta}{\sum_{k \in \text{N}(i)} [\tau_{ik}(t)]^\alpha [\eta_{ik}]^\beta} )
+
+Where:
+- $( \tau_{ij}(t)) is the pheromone level on the edge $((i, j)) at time $(t).
+- $( \eta_{ij} ) is the heuristic desirability of edge $((i, j)).
+- $( \alpha ) and $( \beta ) are parameters that control the relative importance of pheromone versus heuristic information.
+- $( \text{N}(i) ) is the set of feasible nodes to move to from node $(i).
+
+4. Pheromone Update: After all ants have constructed their solutions, the pheromone levels are updated:
+
+$$( \tau_{ij}(t+1) = (1 - \rho) \tau_{ij}(t) + \sum_{k=1}^{m} \Delta \tau_{ij}^k )
+
+Where:
+- $( \rho ) is the pheromone evaporation rate.
+- $( \Delta \tau_{ij}^k ) is the amount of pheromone deposited by the $(k)-th ant.
+
+#### Metaphor
+
+The metaphor behind ACO is based on the behavior of real ants. When ants search for food, they initially explore the area randomly. Upon finding food, they return to the nest while laying down a trail of pheromones. Other ants are likely to follow paths with stronger pheromone concentrations, which in turn reinforce those paths if they too find food. Over time, the shortest path to the food source emerges as the most traveled path due to higher pheromone concentration.
+
+#### Algorithm to Solve TSP
+
+1. Initialization: Initialize pheromone levels $( \tau_{ij}(0) ) for all edges $((i, j)) and set parameters $( \alpha ), $(\beta), and $( \rho ).
+
+2. Solution Construction: For each ant:
+   - Start at a randomly chosen node.
+   - Repeat until a complete tour is constructed:
+     - Choose the next node $(j) based on the probability $(P_{ij}(t)).
+     - Move to node $(j) and add $(j) to the list of visited nodes.
+
+3. Pheromone Update:
+   - Apply pheromone evaporation on all edges.
+   - Deposit new pheromones based on the constructed tours.
+
+4. Daemon Actions (optional): Implement additional actions such as global pheromone updates or local search procedures to improve solutions.
+
+5. Termination: Repeat the solution construction and pheromone update steps until a termination condition is met (e.g., a fixed number of iterations or a convergence criterion).
+
+#### Pseudo-Code
+
+```python
+initialize pheromone levels τ_ij(0)
+for t = 1 to max_iterations do
+    for each ant k do
+        choose a starting node
+        while the tour is not complete do
+            select the next node j based on transition probability P_ij(t)
+            move to node j and update tour
+        end while
+        evaluate the constructed tour
+    end for
+    evaporate pheromones on all edges
+    for each ant k do
+        deposit pheromones based on the quality of the constructed tour
+    end for
+end for
+```
 
 \newpage
 
@@ -266,12 +328,136 @@ The TSP's importance lies in its applicability across diverse fields and its rol
 
 ### Repository Description
 
-Tree.
-Short explanation of architecture
+#### Tree
+.
+├── Dockerfile
+├── README.md
+├── backend
+│   ├── data
+│   │   ├── input
+│   │   │   └── graph.txt
+│   │   └── output
+│   │       └── graph.txt
+│   ├── graph
+│   │   ├── __init__.py
+│   │   └── input.py
+│   ├── main.py
+│   ├── models
+│   │   ├── aco
+│   │   │   ├── AntColony.py
+│   │   │   ├── __init__.py
+│   │   ├── ga
+│   │   │   ├── GeneticAlgorithm.py
+│   │   │   └── __init__.py
+│   │   └── pso
+│   │       └── __init__.py
+│   ├── requirements.txt
+│   ├── server.py
+│   └── utils
+│       ├── __init__.py
+│       ├── convert_to_native_type.py
+│       ├── display_graph.py
+│       ├── generate_random_input.py
+│       └── get_hash.py
+├── docker-compose.yaml
+├── favicon.ico
+└── public
+    ├── css
+    │   └── style.css
+    ├── graph-output
+    │   └── index.html
+    ├── home
+    │   ├── index.html
+    │   └── model-selection.html
+    └── js
+        ├── api.js
+        ├── graph-viz
+        │   ├── cluster.js
+        │   ├── graph.js
+        │   ├── particle.js
+        │   └── sketch.js
+        ├── input.js
+        ├── model.js
+        ├── output.js
+        └── script.js
+
+The project tree represents a structured organization of files and directories necessary for implementing and running the project, which involves solving the Traveling Salesman Problem (TSP) using various metaheuristic models. Here is a detailed description of each part of the project tree:
+
+### Root Directory
+- **Dockerfile**: This file contains instructions to build a Docker image for the project. It ensures a consistent environment for running your application.
+- **README.md**: A markdown file providing documentation and instructions about the project, such as how to set up, run, and use it.
+- **docker-compose.yaml**: A Docker Compose file used to define and run multi-container Docker applications. It simplifies the orchestration of the backend and any other services needed.
+
+### Backend Directory
+This directory contains the backend logic of the application, including data handling, model implementation, and server code.
+
+- **data**
+  - **input**
+    - **graph.txt**: Input data for the graph representing the TSP problem. This file is used by the backend to read the problem instance.
+  - **output**
+    - **graph.txt**: Output data generated by the backend, typically representing the solution to the TSP problem.
+
+- **graph**
+  - **\_\_init\_\_.py**: Initializes the graph module.
+  - **input.py**: Contains functions to read and process the graph input data.
+
+- **main.py**: The main entry point for the backend application. It orchestrates the flow of the application, calling different modules and functions as needed. Also starts the server.
+
+- **models**
+  - **aco**
+    - **AntColony.py**: Contains the implementation of the Ant Colony Optimization algorithm.
+    - **\_\_init\_\_.py**: Initializes the ACO module.
+  - **ga**
+    - **GeneticAlgorithm.py**: Contains the implementation of the Genetic Algorithm.
+    - **\_\_init\_\_.py**: Initializes the GA module.
+  - **pso**
+    - **\_\_init\_\_.py**: Initializes the PSO (Particle Swarm Optimization) module. Additional implementation files for PSO would be added here.
+
+- **requirements.txt**: Lists all the Python dependencies required for your backend application. These can be installed using pip.
+
+- **server.py**: Contains the code for setting up the server, which could handle API requests, serve frontend files, and interact with the backend logic.
+
+- **utils**
+  - **\_\_init\_\_.py**: Initializes the utils module.
+  - **convert_to_native_type.py**: Contains utility functions to convert data types.
+  - **display_graph.py**: Contains functions to visualize the graph.
+  - **generate_random_input.py**: Contains functions to generate random input data for testing.
+  - **get_hash.py**: Contains functions to generate hashes, possibly for caching or identifying unique problem instances.
+
+### Public Directory
+This directory contains the frontend files served to the client.
+
+- **css**
+  - **style.css**: Contains stylesheets for the frontend pages.
+
+- **graph-output**
+  - **index.html**: HTML file for displaying the output graph to the user.
+
+- **home**
+  - **index.html**: HTML file for the home page of your application.
+  - **model-selection.html**: HTML file for the model selection page, where users can choose which algorithm to use.
+
+- **js**
+  - **api.js**: JavaScript file for making API calls to the backend.
+  - **graph-viz**
+    - **cluster.js**: Contains code for visualizing clusters in the graph.
+    - **graph.js**: Contains code for general graph visualization.
+    - **particle.js**: Contains code for visualizing particle movement.
+    - **sketch.js**: Contains code for drawing and sketching the graph.
+  - **input.js**: JavaScript file for handling user input.
+  - **model.js**: JavaScript file for interacting with the model selection.
+  - **output.js**: JavaScript file for handling and displaying output data.
+  - **script.js**: General-purpose JavaScript file for various functionalities across the frontend.
 
 ### Tech Stack
 
+TO-DO
+
 ### Assimilated Architecture
+
+The workflow of the project is pretty simple, wherein the user starts by entering a TSP graph through the user interface which is then sent to the backend using REST API. The backend then employs metaheuristic model as mentioned in the incoming request and returns the result to the client; this contains the best path found with its cost and an array containing convergence data.
+
+The frontend on receiving the response sketches the graph and visualises the path appropriately, further the UI presents the convergence chart for the given graph as produced by the metaheuristic model employed.
 
 \newpage
 
@@ -285,6 +471,38 @@ Short explanation of architecture
 
 # Scope for Future Research and Conclusion
 
+1. **Enhanced Metaheuristic Models**: Explore and implement other advanced metaheuristic algorithms such as Harmony Search, Bat Algorithm, or Grey Wolf Optimizer. Comparative studies on their performance against the current models could yield interesting insights.
+
+2. **Hybrid Algorithms**: Investigate the potential of hybrid algorithms that combine the strengths of multiple metaheuristic techniques. For example, integrating Genetic Algorithms with Particle Swarm Optimization could enhance the solution quality and convergence speed.
+
+3. **Real-World Applications**: Extend the application of these algorithms beyond the TSP to other complex optimization problems like Vehicle Routing Problem (VRP), Job Scheduling, or Network Design. This would demonstrate the versatility and robustness of the implemented models.
+
+4. **Parallel and Distributed Computing**: Leverage parallel and distributed computing frameworks to enhance the scalability and efficiency of the algorithms. Implementing parallel versions of the metaheuristic algorithms could significantly reduce computation times for large-scale problems.
+
+5. **Adaptive Parameter Control**: Research adaptive parameter control mechanisms where the parameters of the algorithms adjust dynamically based on the problem state or performance metrics. This could lead to more efficient and effective optimization processes.
+
+6. **Interactive Visualization**: Develop more sophisticated and interactive visualization tools for the frontend. This could include real-time visualization of the algorithm's search process, heatmaps of pheromone trails in ACO, or evolutionary processes in GA.
+
+7. **Machine Learning Integration**: Investigate the integration of machine learning techniques to predict good initial solutions or to fine-tune algorithm parameters dynamically, potentially improving both the efficiency and effectiveness of the optimization process.
+
+8. **Benchmarking and Analysis**: Conduct extensive benchmarking against standardized datasets and analyze the performance of the implemented algorithms. This includes measuring solution quality, convergence rates, and computational efficiency.
+
+9. **User Experience Improvement**: Enhance the user interface to provide a more user-friendly and intuitive experience. This could include better input mechanisms, detailed output explanations, and easier navigation through the application.
+
+10. **Educational Tools**: Develop educational modules or tutorials integrated within the application to help users understand the underlying principles of the algorithms and their application to optimization problems.
+
+## Conclusion
+
+This project successfully implements five metaheuristic models—Ant Colony Optimization, Particle Swarm Optimization, Artificial Bee Colony, Simulated Annealing, and Genetic Algorithms—to solve the Traveling Salesman Problem. The backend processes the graph data, applies the algorithms, and provides the best path solution, which is then visualized on the frontend.
+
+Key achievements include:
+- **Algorithm Implementation**: Successfully implemented and integrated five distinct metaheuristic algorithms to solve the TSP.
+- **Modular Design**: Developed a modular code structure that separates concerns between data handling, algorithm processing, and visualization.
+- **Interactive Frontend**: Created an interactive frontend for graph input, solution visualization, and convergence chart display.
+
+Despite these successes, the project identifies several areas for future research and improvement. The integration of more advanced and hybrid algorithms, real-world problem extensions, parallel computing, adaptive parameter control, and machine learning integration present promising directions. Additionally, enhancing user experience and developing educational tools can make the application more accessible and informative.
+
+In conclusion, this project lays a robust foundation for solving optimization problems using metaheuristic models and provides ample opportunities for further research and development to enhance its capabilities and applications.
 \newpage
 
 # References
