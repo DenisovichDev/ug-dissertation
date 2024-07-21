@@ -240,11 +240,11 @@ The TSP's importance lies in its applicability across diverse fields and its rol
 
 ## Ant Colony Optimization
 
-#### Description
+### Description
 
 Ant Colony Optimization (ACO) is a metaheuristic inspired by the foraging behavior of ants. Real ants deposit pheromones on paths they travel, which guides other ants to food sources. Similarly, ACO uses a population of artificial ants that cooperate to find good solutions to optimization problems by depositing virtual pheromones on paths in a solution space.
 
-#### Mathematical Basis
+### Mathematical Basis
 
 The mathematical foundation of ACO involves the use of probabilistic transition rules to construct solutions and the pheromone update mechanism. The key components are:
 
@@ -272,11 +272,11 @@ Where:
 - $\rho$ is the pheromone evaporation rate.
 - $\Delta \tau_{ij}^k$ is the amount of pheromone deposited by the $k$-th ant.
 
-#### Metaphor
+### Metaphor
 
 The metaphor behind ACO is based on the behavior of real ants. When ants search for food, they initially explore the area randomly. Upon finding food, they return to the nest while laying down a trail of pheromones. Other ants are likely to follow paths with stronger pheromone concentrations, which in turn reinforce those paths if they too find food. Over time, the shortest path to the food source emerges as the most traveled path due to higher pheromone concentration.
 
-#### Algorithm to Solve TSP
+### Algorithm to Solve TSP
 
 1. Initialization: Initialize pheromone levels $\tau_{ij}(0)$ for all edges $(i, j)$ and set parameters $\alpha$, $\beta$, and $\rho$.
 
