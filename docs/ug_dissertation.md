@@ -270,6 +270,7 @@ $$
 $$
 
 Where:
+
 - $\rho$ is the pheromone evaporation rate.
 - $\Delta \tau_{ij}^k$ is the amount of pheromone deposited by the $k$-th ant.
 
@@ -295,25 +296,47 @@ The metaphor behind ACO is based on the behavior of real ants. When ants search 
 
 5. Termination: Repeat the solution construction and pheromone update steps until a termination condition is met (e.g., a fixed number of iterations or a convergence criterion).
 
-#### Pseudo-Code
+<!-- #### Pseudo-Code -->
 
-```python
-initialize pheromone levels tau_ij(0)
-for t = 1 to max_iterations do
-    for each ant k do
-        choose a starting node
-        while the tour is not complete do
-            select the next node j based on transition probability P_ij(t)
-            move to node j and update tour
-        end while
-        evaluate the constructed tour
-    end for
-    evaporate pheromones on all edges
-    for each ant k do
-        deposit pheromones based on the quality of the constructed tour
-    end for
-end for
-```
+\begin{algorithm}
+    \caption{Ant-Colony Optimization}\label{alg:aco}
+    \begin{algorithmic}
+        \State \textbf{initialize} pheromone levels $\tau_{ij}(0)$
+        \For{$t = 1 \rightarrow$ \texttt{max\_iterations}}
+            \For{each ant  $k$}
+                \State \textbf{choose} a starting node
+                \While{the tour is not complete do}
+                    \State \textbf{select} the next node $j$ based on transition probability $P_{ij}(t)$
+                    \State \textbf{move} to node j and update tour
+                \EndWhile
+                \State \textbf{evaluate} the constructed tour
+            \EndFor
+            \State \textbf{evaporate} pheromones on all edges
+            \For{each ant $k$}
+                \State \textbf{deposit} pheromones based on the quality of the constructed tour
+            \EndFor
+        \EndFor
+    \end{algorithmic}
+\end{algorithm}
+
+
+<!-- ```python -->
+<!-- initialize pheromone levels tau_ij(0) -->
+<!-- for t = 1 to max_iterations do -->
+<!--     for each ant k do -->
+<!--         choose a starting node -->
+<!--         while the tour is not complete do -->
+<!--             select the next node j based on transition probability P_ij(t) -->
+<!--             move to node j and update tour -->
+<!--         end while -->
+<!--         evaluate the constructed tour -->
+<!--     end for -->
+<!--     evaporate pheromones on all edges -->
+<!--     for each ant k do -->
+<!--         deposit pheromones based on the quality of the constructed tour -->
+<!--     end for -->
+<!-- end for -->
+<!-- ``` -->
 
 \newpage
 
