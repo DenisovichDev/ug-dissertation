@@ -248,25 +248,29 @@ Ant Colony Optimization (ACO) is a metaheuristic inspired by the foraging behavi
 
 The mathematical foundation of ACO involves the use of probabilistic transition rules to construct solutions and the pheromone update mechanism. The key components are:
 
-1. Pheromone Trail ($(\tau_{ij})): Represents the desirability of moving from node $(i) to node $(j).
-2. Heuristic Information ($(\eta_{ij})): Represents the desirability of choosing node $(j) when at node $(i), often inversely proportional to the distance for TSP.
-3. Probability of Transition: The probability $(P_{ij}) that an ant moves from node $(i) to node $(j) is given by:
+1. Pheromone Trail ($\tau_{ij}$): Represents the desirability of moving from node $i$ to node $j$.
+2. Heuristic Information ($\eta_{ij}$): Represents the desirability of choosing node $j$ when at node $i$, often inversely proportional to the distance for TSP.
+3. Probability of Transition: The probability $P_{ij}$ that an ant moves from node $i$ to node $j$ is given by:
 
-$$( P_{ij}(t) = \frac{[\tau_{ij}(t)]^\alpha [\eta_{ij}]^\beta}{\sum_{k \in \text{N}(i)} [\tau_{ik}(t)]^\alpha [\eta_{ik}]^\beta} )
+$$ 
+P_{ij}(t) = \frac{[\tau_{ij}(t)]^\alpha [\eta_{ij}]^\beta}{\sum_{k \in \text{N}(i)} [\tau_{ik}(t)]^\alpha [\eta_{ik}]^\beta} 
+$$
 
 Where:
-- $( \tau_{ij}(t)) is the pheromone level on the edge $((i, j)) at time $(t).
-- $( \eta_{ij} ) is the heuristic desirability of edge $((i, j)).
-- $( \alpha ) and $( \beta ) are parameters that control the relative importance of pheromone versus heuristic information.
-- $( \text{N}(i) ) is the set of feasible nodes to move to from node $(i).
+- $\tau_{ij}(t)$ is the pheromone level on the edge $(i, j)$ at time $t$.
+- $\eta_{ij}$ is the heuristic desirability of edge $(i, j)$.
+ $\alpha$ and $\beta$ are parameters that control the relative importance of pheromone versus heuristic information.
+- $\text{N}(i)$ is the set of feasible nodes to move to from node $i$.
 
 4. Pheromone Update: After all ants have constructed their solutions, the pheromone levels are updated:
 
-$$( \tau_{ij}(t+1) = (1 - \rho) \tau_{ij}(t) + \sum_{k=1}^{m} \Delta \tau_{ij}^k )
+$$ 
+\tau_{ij}(t+1) = (1 - \rho) \tau_{ij}(t) + \sum_{k=1}^{m} \Delta \tau_{ij}^k
+$$
 
 Where:
-- $( \rho ) is the pheromone evaporation rate.
-- $( \Delta \tau_{ij}^k ) is the amount of pheromone deposited by the $(k)-th ant.
+- $\rho$ is the pheromone evaporation rate.
+- $\Delta \tau_{ij}^k$ is the amount of pheromone deposited by the $k$-th ant.
 
 #### Metaphor
 
@@ -274,13 +278,13 @@ The metaphor behind ACO is based on the behavior of real ants. When ants search 
 
 #### Algorithm to Solve TSP
 
-1. Initialization: Initialize pheromone levels $( \tau_{ij}(0) ) for all edges $((i, j)) and set parameters $( \alpha ), $(\beta), and $( \rho ).
+1. Initialization: Initialize pheromone levels $\tau_{ij}(0)$ for all edges $(i, j)$ and set parameters $\alpha$, $\beta$, and $\rho$.
 
 2. Solution Construction: For each ant:
    - Start at a randomly chosen node.
    - Repeat until a complete tour is constructed:
-     - Choose the next node $(j) based on the probability $(P_{ij}(t)).
-     - Move to node $(j) and add $(j) to the list of visited nodes.
+     - Choose the next node $j$ based on the probability $P_{ij}(t)$.
+     - Move to node $j$ and add $j$ to the list of visited nodes.
 
 3. Pheromone Update:
    - Apply pheromone evaporation on all edges.
@@ -293,7 +297,7 @@ The metaphor behind ACO is based on the behavior of real ants. When ants search 
 #### Pseudo-Code
 
 ```python
-initialize pheromone levels τ_ij(0)
+initialize pheromone levels tau_ij(0)
 for t = 1 to max_iterations do
     for each ant k do
         choose a starting node
@@ -329,57 +333,60 @@ end for
 ### Repository Description
 
 #### Tree
+
+```
 .
-├── Dockerfile
-├── README.md
-├── backend
-│   ├── data
-│   │   ├── input
-│   │   │   └── graph.txt
-│   │   └── output
-│   │       └── graph.txt
-│   ├── graph
-│   │   ├── __init__.py
-│   │   └── input.py
-│   ├── main.py
-│   ├── models
-│   │   ├── aco
-│   │   │   ├── AntColony.py
-│   │   │   ├── __init__.py
-│   │   ├── ga
-│   │   │   ├── GeneticAlgorithm.py
-│   │   │   └── __init__.py
-│   │   └── pso
-│   │       └── __init__.py
-│   ├── requirements.txt
-│   ├── server.py
-│   └── utils
-│       ├── __init__.py
-│       ├── convert_to_native_type.py
-│       ├── display_graph.py
-│       ├── generate_random_input.py
-│       └── get_hash.py
-├── docker-compose.yaml
-├── favicon.ico
-└── public
-    ├── css
-    │   └── style.css
-    ├── graph-output
-    │   └── index.html
-    ├── home
-    │   ├── index.html
-    │   └── model-selection.html
-    └── js
-        ├── api.js
-        ├── graph-viz
-        │   ├── cluster.js
-        │   ├── graph.js
-        │   ├── particle.js
-        │   └── sketch.js
-        ├── input.js
-        ├── model.js
-        ├── output.js
-        └── script.js
+|--- Dockerfile
+|--- README.md
+|--- backend
+|   |--- data
+|   |   |--- input
+|   |   |   |--- graph.txt
+|   |   |--- output
+|   |       |--- graph.txt
+|   |--- graph
+|   |   |--- __init__.py
+|   |   |--- input.py
+|   |--- main.py
+|   |--- models
+|   |   |--- aco
+|   |   |   |--- AntColony.py
+|   |   |   |--- __init__.py
+|   |   |--- ga
+|   |   |   |--- GeneticAlgorithm.py
+|   |   |   |--- __init__.py
+|   |   |--- pso
+|   |       |--- __init__.py
+|   |--- requirements.txt
+|   |--- server.py
+|   |--- utils
+|       |--- __init__.py
+|       |--- convert_to_native_type.py
+|       |--- display_graph.py
+|       |--- generate_random_input.py
+|       |--- get_hash.py
+|--- docker-compose.yaml
+|--- favicon.ico
+|--- public
+    |--- css
+    |   |--- style.css
+    |--- graph-output
+    |   |--- index.html
+    |--- home
+    |   |--- index.html
+    |   |--- model-selection.html
+    |--- js
+        |--- api.js
+        |--- graph-viz
+        |   |--- cluster.js
+        |   |--- graph.js
+        |   |--- particle.js
+        |   |--- sketch.js
+        |--- input.js
+        |--- model.js
+        |--- output.js
+        |--- script.js
+```
 
 The project tree represents a structured organization of files and directories necessary for implementing and running the project, which involves solving the Traveling Salesman Problem (TSP) using various metaheuristic models. Here is a detailed description of each part of the project tree:
 
