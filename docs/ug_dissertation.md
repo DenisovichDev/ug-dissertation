@@ -257,6 +257,7 @@ P_{ij}(t) = \frac{[\tau_{ij}(t)]^\alpha [\eta_{ij}]^\beta}{\sum_{k \in \text{N}(
 $$
 
 Where:
+
 - $\tau_{ij}(t)$ is the pheromone level on the edge $(i, j)$ at time $t$.
 - $\eta_{ij}$ is the heuristic desirability of edge $(i, j)$.
  $\alpha$ and $\beta$ are parameters that control the relative importance of pheromone versus heuristic information.
