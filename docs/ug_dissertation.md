@@ -501,6 +501,10 @@ The frontend on receiving the response sketches the graph and visualises the pat
 
 # Implementation 
 
+![Graph Input](./figures/sc-1.png){ height=450px }
+
+![TSP Solution being shown for Ant Colony Optimization](./figures/sc-2.png){ width=600px }
+
 \newpage
 
 # Scope for Future Research and Conclusion
