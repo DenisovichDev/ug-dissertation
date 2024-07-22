@@ -49,7 +49,6 @@ The significance of this project lies in its comprehensive comparison of differe
 
 In the following sections, we will detail the methodology used for implementing each algorithm, the experimental setup, and the results of our comparative analysis. The ultimate goal is to offer a thorough evaluation that can inform the selection of appropriate metaheuristic strategies for solving the TSP and similar optimization problems.
 
-\newpage
 
 # Background/Review of related work
 
@@ -117,7 +116,6 @@ In this project we aim to see how metaheursitic models fare against these tradit
 
 Each of these metaheuristic algorithms has been extensively studied and applied to different complex problems in varied domains, demonstrating varying degrees of success. Numerous comparative studies have been conducted to evaluate their performance on different instances of the TSP, providing valuable insights into their strengths and weaknesses. This project builds on this rich body of work by implementing and comparing these five metaheuristic algorithms in a unified framework, providing a comprehensive evaluation of their performance on the TSP.
 
-\newpage
 
 # Metaheuristics
 
@@ -155,7 +153,6 @@ Metaheuristics are applied across various domains due to their versatility and e
 
 In this project, we focus on implementing and comparing the performance of ACO, PSO, ABC, SA, and GA for solving the TSP. By evaluating their solution quality, convergence speed, and computational efficiency, we aim to provide insights into the strengths and weaknesses of each metaheuristic approach, guiding future research and practical applications in optimization problems.
 
-\newpage
 
 # Traveling Salesperson Problem
 
@@ -234,7 +231,6 @@ The TSP is classified as an NP-hard problem, meaning that no known polynomial-ti
 
 The TSP's importance lies in its applicability across diverse fields and its role as a benchmark problem for testing and comparing optimization algorithms. Research on the TSP has driven advancements in algorithm design, computational techniques, and theoretical understanding of combinatorial optimization. Solving the TSP efficiently can lead to significant improvements in operational efficiency, cost savings, and overall performance in practical application
 
-\newpage
 
 # Metaheuristic Models
 
@@ -338,7 +334,6 @@ The metaphor behind ACO is based on the behavior of real ants. When ants search 
 <!-- end for -->
 <!-- ``` -->
 
-\newpage
 
 # Methodology
 
