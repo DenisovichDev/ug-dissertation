@@ -315,25 +315,15 @@ The metaphor behind ACO is based on the behavior of real ants. When ants search 
     \end{algorithmic}
 \end{algorithm}
 
+## Genetic Algorithm
 
-<!-- ```python -->
-<!-- initialize pheromone levels tau_ij(0) -->
-<!-- for t = 1 to max_iterations do -->
-<!--     for each ant k do -->
-<!--         choose a starting node -->
-<!--         while the tour is not complete do -->
-<!--             select the next node j based on transition probability P_ij(t) -->
-<!--             move to node j and update tour -->
-<!--         end while -->
-<!--         evaluate the constructed tour -->
-<!--     end for -->
-<!--     evaporate pheromones on all edges -->
-<!--     for each ant k do -->
-<!--         deposit pheromones based on the quality of the constructed tour -->
-<!--     end for -->
-<!-- end for -->
-<!-- ``` -->
+### Description
 
+### Mathematical Basis
+
+### Metaphor
+
+### Algorithm to Solve TSP
 
 # Methodology
 
