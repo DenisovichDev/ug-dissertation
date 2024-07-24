@@ -294,7 +294,7 @@ The metaphor behind ACO is based on the behavior of real ants. When ants search 
 
 <!-- #### Pseudo-Code -->
 
-\begin{algorithm}
+\begin{algorithm}[H]
     \caption{Ant-Colony Optimization}\label{alg:aco}
     \begin{algorithmic}
         \State \textbf{initialize} pheromone levels $\tau_{ij}(0)$
@@ -319,11 +319,63 @@ The metaphor behind ACO is based on the behavior of real ants. When ants search 
 
 ### Description
 
+Genetic Algorithm (GA) is a metaheuristic inspired by the process of natural selection. In Darwinian theory of evolution, organisms that are more adapted to their environment are more likely to survive and pass on the genes that aided their success. These naturally selected organisms mate and mutate among themselves to create a new generation that are more adaptable to the environment. In GA, a population of candidate solutions are first "guessed", and in a similar manner, the fittest solutions are combined and occasionally mutated to create a new generation of solution, which should be better than the previous ones.
+
 ### Mathematical Basis
+
+Since genetic algorithms are designed to simulate a biological process, much of the relevant terminology is borrowed from biology. However the entities in this terminology are much simpler in nature than its biological counterparts. The different components are:
+
+1. Fitness Function ($f$):  The fitness function is the function that the algorithm is trying to optimize. The word "fitness" is taken from evolutionary theory. It is one of the more pivotal points of the algorithm. The fitness function must be more sensitive than just detecting what is a "good" chromosome versus a "bad" chromosome: it needs to accurately score the chromosomes based on a range of fitness values, so that a somewhat complete solution can be distinguished from a more complete solution.
+2. Population of Chromosomes ($C$): A *chromosome* is a numerical value or values that represent a candidate solution to the problem that the genetic algorithm is trying to solve. Each candidate solution is encoded as an array of parameter values. If a problem has $N_{\text{par}}$ dimensions, then typically each chromosome is encoded as an $N_{\text{par}}$-element array:
+$$
+\text{chromosome}=[p_1, p_2, p_3,...,p_{N_{\text{par}}}]
+$$
+Where each $p_i$ is a particular value of the $i^{th}$ parameter. Most popular approach is to convert each parameter into a bit string, then to concatenate the parameters like genes in a DNA strand to form a chromosome. A genetic algorithm begins with a randomly chosen assortment of chromosomes, which serves as the first generation (initial population). 
+
+3. Selection Operator: The *selection operator* chooses the chromosomes that are to be used in the reproduction of the next generation. It is done based on a probability distribution given by the user: the fitter the chromosome is, the more likely it is to be selected. If $f$ is the fitness function, then the probability of the chromosome $j$ to be selected may be:
+$$
+P(C_n)=\left|\frac{f(C_n)}{\sum_{i=0}^{N_{\text{pop}}} f(C_i)}\right|
+$$
+
+4. Crossover Operator: The *crossover operator* resembles the crossing over and recombination of chromosomes during meiosis.  This operator swaps a subsequence of two of the chosen chromosomes to create two o spring. For example, if the parent chromosomes. For example if the parent chromosomes are:
+$$
+[11010111001000] \text{ and } [01011101010010]
+$$
+And if they are crossed over after the fourth bit, then the offspring would be:
+$$
+ [01010111001000] \text{ and } [11011101010010]
+$$
+5. Mutation Operator: The *mutation operator* randomly flips individual bits in the new chromosome. Usually the probability of mutation is very low, such as 0.001. 
+
 
 ### Metaphor
 
+The metaphor behind GA is based on the Darwinian theory of evolution. Organisms that are more adaptable to the environment thrive and mate within their population, and the next generation thereby becomes even better than the parent generation. This biological phenomenon is known as the Natural Selection. Mutation is an abrupt change in gene which is occasionally introduced during cell division, which generates the genetic variation on which the evolutionary process depends.
+
 ### Algorithm to Solve TSP
+
+1. Initialization: Generate N random candidate routes and calculate fitness value for each route. 
+1. Repeat following steps _Number of iteration_ times:
+
+    i. Selection: Select two best candidate routes. 
+    i. Reproduction:  Reproduce  two  routes  from  the  best   routes.
+    i. Generate  new  population:  Replace  the  two  worst routes  with the new routes. 
+
+1. Termination: Return the best result after all the iterations.
+
+\begin{algorithm}[H]
+    \caption{Genetic Algorithm}\label{alg:ga}
+    \begin{algorithmic}
+        \State \textbf{set} cooling parameter = 0
+        \State \textbf{evaluate} population $P(t)$
+        \While{not done}
+            \State \textbf{set} parents(t) $\gets$ \_parents($P(t)$)
+            \State \textbf{set} offspring(t) $\gets$ procreate\_and\_mutate($P(t)$)
+            \State \textbf{set} $P(t+1)$ $\gets$ select\_survivors($P(t)$, offspring(t))
+            \State \textbf{set} $t \gets t+1$
+        \EndWhile   
+    \end{algorithmic}
+\end{algorithm}
 
 # Methodology
 
