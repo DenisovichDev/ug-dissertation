@@ -377,6 +377,212 @@ The metaphor behind GA is based on the Darwinian theory of evolution. Organisms 
     \end{algorithmic}
 \end{algorithm}
 
+## Particle Swarm Optimization
+
+### Description
+
+Particle Swarm Optimization (PSO) is a metaheuristic inspired by the social behavior of birds flocking or fish schooling. In PSO, a population of candidate solutions, called particles, move around the search space influenced by their own best known positions and the best known positions of the entire swarm. This cooperation among particles allows PSO to efficiently explore the search space and converge on optimal solutions.
+
+### Mathematical Basis
+
+The mathematical foundation of PSO involves updating the positions and velocities of particles based on their own experience and that of their neighbors. The key components are:
+
+1. Position ($x_i$): Represents the current position of particle $i$ in the search space.
+2. Velocity ($v_i$): Represents the change in position for particle $i$.
+3. Personal Best ($p_i$): Represents the best position found by particle $i$.
+4. Global Best ($g$): Represents the best position found by the entire swarm.
+
+The position and velocity of each particle are updated using the following equations:
+
+$$ 
+v_i(t+1) = \omega v_i(t) + c_1 r_1 (p_i - x_i(t)) + c_2 r_2 (g - x_i(t)) 
+$$
+
+$$ 
+x_i(t+1) = x_i(t) + v_i(t+1) 
+$$
+
+Where:
+
+- $\omega$ is the inertia weight that controls the influence of the previous velocity.
+- $c_1$ and $c_2$ are acceleration coefficients that control the influence of personal and global best positions.
+- $r_1$ and $r_2$ are random numbers between 0 and 1.
+
+### Metaphor
+
+The metaphor behind PSO is based on the collective behavior observed in flocks of birds or schools of fish. Each particle (bird or fish) adjusts its trajectory based on its own experience and the success of its neighbors, leading to a coordinated movement towards the best solution (food source or destination).
+
+### Algorithm to Solve TSP
+
+1. Initialization: Initialize the positions and velocities of particles randomly and set parameters $\omega$, $c_1$, and $c_2$.
+
+2. Evaluate Fitness: Evaluate the fitness of each particle based on the total distance of the tour.
+
+3. Update Personal and Global Bests: Update the personal best position for each particle and the global best position for the swarm.
+
+4. Update Velocities and Positions:
+   - Update the velocity of each particle using the velocity update equation.
+   - Update the position of each particle using the position update equation.
+
+5. Termination: Repeat the evaluation and update steps until a termination condition is met (e.g., a fixed number of iterations or a convergence criterion).
+
+\begin{algorithm}[H]
+    \caption{Particle Swarm Optimization}\label{alg:pso}
+    \begin{algorithmic}
+        \State \textbf{initialize} positions $x_i$ and velocities $v_i$ for all particles
+        \State \textbf{initialize} personal best $p_i$ and global best $g$
+        \For{$t = 1 \rightarrow$ \texttt{max\_iterations}}
+            \For{each particle $i$}
+                \State \textbf{evaluate} fitness of particle $i$
+                \State \textbf{update} personal best $p_i$ and global best $g$
+                \State \textbf{update} velocity $v_i$ using the velocity update equation
+                \State \textbf{update} position $x_i$ using the position update equation
+            \EndFor
+        \EndFor
+    \end{algorithmic}
+\end{algorithm}
+
+## Simulated Annealing
+
+### Description
+
+Simulated Annealing (SA) is a metaheuristic inspired by the annealing process in metallurgy. Annealing involves heating and slowly cooling a material to decrease defects, thereby finding a state with lower energy. Similarly, SA explores the solution space by allowing random moves that worsen the objective function but with decreasing probability over time, which helps avoid local optima.
+
+### Mathematical Basis
+
+The mathematical foundation of SA involves the use of a temperature parameter that controls the probability of accepting worse solutions. The key components are:
+
+1. Temperature ($T$): Controls the probability of accepting worse solutions.
+2. Acceptance Probability: The probability $P$ of accepting a worse solution is given by:
+
+$$ 
+P(\Delta E, T) = \exp\left(-\frac{\Delta E}{T}\right) 
+$$
+
+Where:
+
+- $\Delta E$ is the change in the objective function value (e.g., increase in tour length for TSP).
+- $T$ is the current temperature.
+
+### Metaphor
+
+The metaphor behind SA is based on the physical annealing process. Just as a metal is heated and then slowly cooled to reach a low-energy state, SA explores the solution space by accepting worse solutions with decreasing probability, allowing it to escape local optima and eventually converge on a near-optimal solution.
+
+### Algorithm to Solve TSP
+
+1. Initialization: Initialize the temperature $T$ and a current solution.
+
+2. Evaluate Fitness: Evaluate the fitness of the current solution.
+
+3. Generate Neighbor: Generate a neighbor solution by making a small change to the current solution (e.g., swapping two cities in the tour).
+
+4. Acceptance Probability:
+   - Calculate the change in the objective function $\Delta E$.
+   - Accept the neighbor solution with probability $P(\Delta E, T)$.
+
+5. Update Temperature: Decrease the temperature according to a cooling schedule.
+
+6. Termination: Repeat the evaluation, neighbor generation, acceptance, and temperature update steps until a termination condition is met (e.g., a fixed number of iterations or the temperature falls below a threshold).
+
+\begin{algorithm}[H]
+    \caption{Simulated Annealing}\label{alg:sa}
+    \begin{algorithmic}
+        \State \textbf{initialize} temperature $T$ and current solution
+        \State \textbf{evaluate} fitness of the current solution
+        \For{$t = 1 \rightarrow$ \texttt{max\_iterations}}
+            \State \textbf{generate} a neighbor solution
+            \State \textbf{calculate} $\Delta E$ and acceptance probability $P(\Delta E, T)$
+            \If{neighbor solution is accepted}
+                \State \textbf{update} current solution
+            \EndIf
+            \State \textbf{decrease} temperature $T$
+        \EndFor
+    \end{algorithmic}
+\end{algorithm}
+
+## Artificial Bee Colony (ABC)
+
+### Description
+
+Artificial Bee Colony (ABC) is a metaheuristic inspired by the foraging behavior of honey bees. In the ABC algorithm, the colony consists of three groups of bees: employed bees, onlookers, and scouts. Employed bees search for food sources (solutions), onlookers watch the dances of employed bees to choose food sources, and scouts randomly search for new food sources.
+
+### Mathematical Basis
+
+The mathematical foundation of ABC involves the exploration and exploitation of food sources in the search space. The key components are:
+
+1. Food Source ($x_i$): Represents a potential solution to the optimization problem.
+2. Employed Bees: Each employed bee is associated with a specific food source and searches for new food sources in the neighborhood.
+3. Onlookers: Onlookers evaluate the quality of food sources discovered by employed bees and choose which sources to exploit based on a probability related to the fitness of the food sources.
+4. Scouts: Scouts explore the search space randomly to discover new food sources.
+
+The main steps are:
+
+1. Initialization: Initialize the food sources randomly and evaluate their fitness.
+2. Employed Bee Phase: Each employed bee searches for a new food source in the neighborhood of its current source using:
+
+$$ 
+v_{ij} = x_{ij} + \phi_{ij} (x_{ij} - x_{kj})
+$$
+
+Where:
+- $x_{ij}$ is the current food source.
+- $x_{kj}$ is a randomly selected food source.
+- $\phi_{ij}$ is a random number in the range [-1, 1].
+
+3. Onlooker Bee Phase: Onlookers choose food sources based on a probability proportional to the fitness of the sources:
+
+$$ 
+P_i = \frac{f_i}{\sum_{k=1}^{N} f_k}
+$$
+
+Where:
+- $f_i$ is the fitness of the $i$-th food source.
+- $N$ is the number of food sources.
+
+4. Scout Bee Phase: If a food source is not improved over a certain number of cycles, it is abandoned, and the scout bee searches for a new random food source.
+
+5. Memorize the Best Solution: Keep track of the best food source found so far.
+
+6. Termination: Repeat the above steps until a termination condition is met (e.g., a fixed number of iterations or convergence criterion).
+
+### Metaphor
+
+The metaphor behind ABC is based on the foraging behavior of honey bees. Employed bees explore known food sources and share information with onlookers through a waggle dance. Onlookers observe these dances and choose food sources based on their quality. Scouts explore the environment randomly to find new food sources. This collective behavior allows the bee colony to efficiently find and exploit the best food sources.
+
+### Algorithm to Solve TSP
+
+1. Initialization: Generate a set of initial food sources (solutions) randomly.
+2. Repeat until termination condition is met:
+   - Employed Bee Phase: Each employed bee searches for a new food source in the neighborhood and updates its position.
+   - Onlooker Bee Phase: Onlookers evaluate food sources and choose which ones to exploit based on their quality.
+   - Scout Bee Phase: Replace abandoned food sources with new random solutions.
+   - Memorize the best solution found so far.
+
+3. Return the best solution found.
+
+\begin{algorithm}[H]
+    \caption{Artificial Bee Colony Algorithm}\label{alg:abc}
+    \begin{algorithmic}
+        \State \textbf{initialize} population of food sources
+        \While{termination condition not met}
+            \For{each employed bee}
+                \State \textbf{search} for a new food source
+                \State \textbf{evaluate} the new food source
+                \State \textbf{update} position if the new source is better
+            \EndFor
+            \For{each onlooker bee}
+                \State \textbf{select} a food source based on probability
+                \State \textbf{search} for a new food source
+                \State \textbf{evaluate} the new food source
+                \State \textbf{update} position if the new source is better
+            \EndFor
+            \State \textbf{identify} abandoned food sources
+            \State \textbf{replace} abandoned sources with new random sources (scouts)
+            \State \textbf{memorize} the best solution found so far
+        \EndWhile
+    \end{algorithmic}
+\end{algorithm}
+
 # Methodology
 
 ## User Interface Description
@@ -537,9 +743,54 @@ The frontend on receiving the response sketches the graph and visualises the pat
 
 \newpage
 
-# Results and Comparative Study
+# Comparative Study
 
-\newpage
+### Objective
+
+The objective of this comparative study is to evaluate the performance of five metaheuristic algorithms—Ant Colony Optimization (ACO), Genetic Algorithm (GA), Particle Swarm Optimization (PSO), Artificial Bee Colony (ABC), and Simulated Annealing (SA)—in solving the Traveling Salesman Problem (TSP). The comparison focuses on their convergence rates and effectiveness in finding the optimal or near-optimal solution.
+
+### Methodology
+
+1. **Implementation**:
+   - Each algorithm is implemented to solve the TSP, ensuring consistency in the problem instance and evaluation metrics.
+   - A standardized test set of cities is used to provide a fair comparison.
+
+2. **Convergence Rate Analysis**:
+   - The convergence rate is analyzed by plotting the best solution found over iterations.
+   - Each algorithm's ability to escape local optima and converge to a global optimum is evaluated.
+
+3. **Performance Metrics**:
+   - **Solution Quality**: The length of the shortest route found by each algorithm.
+   - **Convergence Speed**: The number of iterations required to reach the best solution.
+   - **Robustness**: The consistency of the results over multiple runs.
+
+### Results
+
+1. **Ant Colony Optimization (ACO)**:
+   - Strengths: Strong performance in exploring and exploiting the search space, often finding high-quality solutions.
+   - Weaknesses: Convergence can be slower due to the iterative nature of pheromone updates.
+
+2. **Genetic Algorithm (GA)**:
+   - Strengths: Good at exploring the search space through crossover and mutation operations, often finding diverse solutions.
+   - Weaknesses: May require fine-tuning of parameters and can sometimes converge prematurely to local optima.
+
+3. **Particle Swarm Optimization (PSO)**:
+   - Strengths: Fast convergence due to the collective behavior of particles, balancing exploration and exploitation.
+   - Weaknesses: May struggle with complex search spaces, leading to suboptimal solutions if not properly tuned.
+
+4. **Artificial Bee Colony (ABC)**:
+   - Strengths: Effective at balancing exploration (scouts) and exploitation (employed and onlooker bees), often finding good solutions.
+   - Weaknesses: Convergence speed can vary based on the problem complexity and parameter settings.
+
+5. **Simulated Annealing (SA)**:
+   - Strengths: Strong ability to escape local optima through probabilistic acceptance of worse solutions, leading to good global exploration.
+   - Weaknesses: Convergence speed can be slow due to the gradual cooling schedule, requiring careful parameter tuning.
+
+### Conclusion
+
+The comparative study highlights that each algorithm has unique strengths and weaknesses in solving the TSP. ACO and ABC tend to find high-quality solutions due to their effective exploration and exploitation mechanisms. GA and PSO provide a good balance of convergence speed and solution quality but require careful parameter tuning. SA, while robust in escaping local optima, can be slower in converging to the best solution.
+
+Overall, the choice of algorithm may depend on the specific requirements of the problem instance and the desired balance between convergence speed and solution quality. This study provides valuable insights into the performance characteristics of these metaheuristics, guiding future applications in solving combinatorial optimization problems.
 
 # Implementation 
 
