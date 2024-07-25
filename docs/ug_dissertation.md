@@ -369,7 +369,7 @@ The metaphor behind GA is based on the Darwinian theory of evolution. Organisms 
         \State \textbf{set} cooling parameter = 0
         \State \textbf{evaluate} population $P(t)$
         \While{not done}
-            \State \textbf{set} parents(t) $\gets$ \_parents($P(t)$)
+            \State \textbf{set} parents(t) $\gets$ select\_parents($P(t)$)
             \State \textbf{set} offspring(t) $\gets$ procreate\_and\_mutate($P(t)$)
             \State \textbf{set} $P(t+1)$ $\gets$ select\_survivors($P(t)$, offspring(t))
             \State \textbf{set} $t \gets t+1$
@@ -587,6 +587,14 @@ The metaphor behind ABC is based on the foraging behavior of honey bees. Employe
 
 ## User Interface Description
 
+### UI Design
+
+The user interface is created using vanilla JavaScript, HTML and CSS. To handle the RESTful API, the JavaScript fetch API is used. The user interface is simple and rudimentary. The input graph is taken from the user using HTML forms and so is the selected model and its parameters and subsequently sent to the backend server as a POST request. The response to the said request is the TSP solution, which then is handled and visualized. 
+
+### Visualization
+
+**Force-directed Graph Drawing Algorithm:** To visualise the input graph and its solution, a force-directed graph drawing algorithm is used. 
+
 ## Data-flow Diagram
 
 \begin{figure}[h]
@@ -722,24 +730,26 @@ This directory contains the frontend files served to the client.
 - **js**
   - **api.js**: JavaScript file for making API calls to the backend.
   - **graph-viz**
-    - **cluster.js**: Contains code for visualizing clusters in the graph.
-    - **graph.js**: Contains code for general graph visualization.
-    - **particle.js**: Contains code for visualizing particle movement.
-    - **sketch.js**: Contains code for drawing and sketching the graph.
+    - **particle.js**: Contains code that defines each node of the graph as a particle.
+    - **cluster.js**: Contains code for forming a cluster of particles which is to become the graph.
+    - **graph.js**: Contains code that defines the visual structure of a force-directed graph.
+    - **sketch.js**: Contains code to form the input graph and the response solution using objects from the previous modules.
   - **input.js**: JavaScript file for handling user input.
   - **model.js**: JavaScript file for interacting with the model selection.
   - **output.js**: JavaScript file for handling and displaying output data.
-  - **script.js**: General-purpose JavaScript file for various functionalities across the frontend.
+  - **script.js**: General-purpose JavaScript file for various functionalities across the frontend, including handling response from server using REST API.
 
 ### Tech Stack
 
-TO-DO
+- **Python** is used to handle the backend and to model the metaheuristics. Specific packages used are _FastAPI_ for setting up the backend server and _NumPy_ for handling matrices.
+- **JavaScript** is used to handle RESTful API and visualization. Specific packages used are _p5.js_ for visualization in Canvas and _toxiclibs.js_ for physics components.
+- **Docker** is used to easily build and test the application in an platform Independent manner.
 
 ### Assimilated Architecture
 
 The workflow of the project is pretty simple, wherein the user starts by entering a TSP graph through the user interface which is then sent to the backend using REST API. The backend then employs metaheuristic model as mentioned in the incoming request and returns the result to the client; this contains the best path found with its cost and an array containing convergence data.
 
-The frontend on receiving the response sketches the graph and visualises the path appropriately, further the UI presents the convergence chart for the given graph as produced by the metaheuristic model employed.
+The frontend sends the input graph and chosen model from the user to the backend server and subsequently receives the solution. Upon receiving the response, it uses rendering techniques and force-directed graph method to visualise the input graph and the solution path appropriately; further the UI presents the convergence chart for the given graph as produced by the metaheuristic model employed.
 
 \newpage
 
