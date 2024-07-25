@@ -1,12 +1,17 @@
 ---
-author: Sagnik Chakraborty, Bhaswar Chakraborty
-date: Department of Computer Science
+author:
+- Sagnik Chakraborty
+- Bhaswar Chakraborty
+date: "Department of Computer Science, Scottish Church College"
 title: Comparative Study of Metaheuristic Models for Solving Travelling Salesperson Problem
 abstract: The Traveling Salesman Problem (TSP) is a classic optimization challenge that has been extensively studied due to its NP-hard nature and practical applications in various fields. This project investigates and compares the performance of five metaheuristic algorithms—Ant Colony Optimization (ACO), Particle Swarm Optimization (PSO), Artificial Bee Colony (ABC), Simulated Annealing (SA), and Genetic Algorithm (GA)—in solving the TSP. Each algorithm's efficacy is evaluated based on solution quality and convergence speed. The project includes a user-friendly frontend interface allowing users to input the graph and visualize the optimal path alongside convergence charts. This comprehensive comparison aims to provide insights into the strengths and weaknesses of each metaheuristic approach, guiding future research and practical applications in optimization problems.
 geometry:
 - margin=1in
 fontsize: 11pt
 listings: false
+bibliography: refs.bib
+nocite: |
+  @*
 numbersections: true
 header-includes: |
     \usepackage{tikzit}
@@ -58,27 +63,27 @@ The Traveling Salesman Problem (TSP) is a cornerstone of combinatorial optimizat
 
 ### Brute Force Search
 
-Description: This method involves evaluating all possible permutations of the cities to determine the shortest route.
-Complexity: The time complexity is O(n!), making it impractical for large instances due to the factorial growth in the number of permutations.
+Description: This method involves evaluating all possible permutations of the cities to determine the shortest route.  
+Complexity: The time complexity is O(n!), making it impractical for large instances due to the factorial growth in the number of permutations.  
 Use Case: Suitable for small instances of TSP where the number of cities is manageable.
 
-Dynamic Programming (Held-Karp Algorithm):
+### Dynamic Programming (Held-Karp Algorithm):
 
-Description: This approach uses dynamic programming to reduce the computational complexity of the TSP. It breaks the problem into overlapping subproblems, solving each subproblem only once and storing the solutions.
-Complexity: The Held-Karp algorithm has a time complexity of O(n^2 * 2^n), which is more efficient than brute force but still exponential.
+Description: This approach uses dynamic programming to reduce the computational complexity of the TSP. It breaks the problem into overlapping subproblems, solving each subproblem only once and storing the solutions.  
+Complexity: The Held-Karp algorithm has a time complexity of $O(n^2 * 2^n)$, which is more efficient than brute force but still exponential.  
 Use Case: Applicable for moderate-sized instances where exact solutions are necessary, but the problem size is not exceedingly large.
 
 ### Branch and Bound
 
-Description: This method systematically explores branches of the solution space, pruning branches that cannot yield better solutions than already found ones.
-Complexity: The efficiency of branch and bound depends on the specific problem instance and the quality of the bounds used.
-Use Case: Useful for problems where good bounds can be established, reducing the search space significantly.
+Description: This method systematically explores branches of the solution space, pruning branches that cannot yield better solutions than already found ones.  
+Complexity: The efficiency of branch and bound depends on the specific problem instance and the quality of the bounds used.  
+Use Case: Useful for problems where good bounds can be established, reducing the search space significantly.  
 
 ### Cutting Planes and Integer Linear Programming (ILP)
 
-Description: These methods formulate the TSP as an integer linear programming problem and iteratively refine the solution space using cutting planes to exclude non-optimal solutions.
-Complexity: The efficiency varies based on the formulation and the specific cutting planes used.
-Use Case: Tools like Concorde TSP Solver employ these techniques effectively for solving large-scale instances.
+Description: These methods formulate the TSP as an integer linear programming problem and iteratively refine the solution space using cutting planes to exclude non-optimal solutions.  
+Complexity: The efficiency varies based on the formulation and the specific cutting planes used.  
+Use Case: Tools like Concorde TSP Solver employ these techniques effectively for solving large-scale instances.  
 
 ## Heuristic Approaches
 
@@ -86,33 +91,33 @@ Heuristics are problem-specific strategies that aim to find good solutions quick
 
 ### Nearest Neighbor Heuristic
 
-Description: This heuristic starts at an arbitrary city and repeatedly visits the nearest unvisited city until all cities are visited.
-Complexity: O(n^2) due to the repeated nearest neighbor search.
+Description: This heuristic starts at an arbitrary city and repeatedly visits the nearest unvisited city until all cities are visited.  
+Complexity: $O(n^2)$ due to the repeated nearest neighbor search.  
 Use Case: Fast and easy to implement but may produce suboptimal solutions, especially for larger instances.
 
 ## Nearest Insertion Heuristic
 
-Description: This method starts with a sub-tour of two cities and iteratively inserts the nearest city to the current sub-tour.
-Complexity: O(n^2).
+Description: This method starts with a sub-tour of two cities and iteratively inserts the nearest city to the current sub-tour.  
+Complexity: $O(n^2)$.  
 Use Case: Provides better solutions than the nearest neighbor heuristic but still may not be optimal.
 
 ## Christofides' Algorithm
 
-Description: This algorithm constructs a minimum spanning tree, finds a minimum-weight perfect matching for the odd-degree vertices, and combines these to form a Hamiltonian cycle.
-Complexity: O(n^3).
+Description: This algorithm constructs a minimum spanning tree, finds a minimum-weight perfect matching for the odd-degree vertices, and combines these to form a Hamiltonian cycle.  
+Complexity: $O(n^3)$.  
 Use Case: Guarantees a solution within 1.5 times the optimal solution for metric TSP instances.
 
 In this project we aim to see how metaheursitic models fare against these traditional methods of solving TSP. There has been extensive research on such models and have been used to solve multiple different sets of problems by tweaking their parameters. Brief backgrounds for models used in this project are listed below.
 
-- Ant Colony Optimization (ACO) was introduced by Marco Dorigo in the early 1990s. Inspired by the foraging behavior of ants, ACO has been successfully applied to the TSP and other combinatorial optimization problems. ACO algorithms simulate the pheromone-laying and following behavior of ants to iteratively construct solutions and reinforce successful paths. Numerous variations and improvements of the original ACO algorithm have been proposed, enhancing its performance and robustness.
+- *Ant Colony Optimization* (ACO) was introduced by Marco Dorigo in the early 1990s. Inspired by the foraging behavior of ants, ACO has been successfully applied to the TSP and other combinatorial optimization problems. ACO algorithms simulate the pheromone-laying and following behavior of ants to iteratively construct solutions and reinforce successful paths. Numerous variations and improvements of the original ACO algorithm have been proposed, enhancing its performance and robustness.
 
-- Particle Swarm Optimization (PSO), developed by James Kennedy and Russell Eberhart in 1995, models the social behavior of birds flocking or fish schooling. In PSO, particles representing potential solutions move through the search space influenced by their own best positions and the best positions of their neighbors. PSO has been effectively applied to the TSP and various other optimization problems, with many studies focusing on hybridizing PSO with other techniques to improve performance.
+- *Particle Swarm Optimization* (PSO), developed by James Kennedy and Russell Eberhart in 1995, models the social behavior of birds flocking or fish schooling. In PSO, particles representing potential solutions move through the search space influenced by their own best positions and the best positions of their neighbors. PSO has been effectively applied to the TSP and various other optimization problems, with many studies focusing on hybridizing PSO with other techniques to improve performance.
 
-- Artificial Bee Colony (ABC), proposed by Karaboga in 2005, is inspired by the foraging behavior of honey bees. ABC divides the search process into employed bees, onlookers, and scouts, each with specific roles in exploring and exploiting the search space. ABC has shown competitive performance on the TSP and has been the subject of numerous modifications and hybrid approaches to enhance its effectiveness.
+- *Artificial Bee Colony* (ABC), proposed by Karaboga in 2005, is inspired by the foraging behavior of honey bees. ABC divides the search process into employed bees, onlookers, and scouts, each with specific roles in exploring and exploiting the search space. ABC has shown competitive performance on the TSP and has been the subject of numerous modifications and hybrid approaches to enhance its effectiveness.
 
-- Simulated Annealing (SA), introduced by Kirkpatrick, Gelatt, and Vecchi in 1983, is inspired by the annealing process in metallurgy. SA probabilistically accepts worse solutions to escape local optima, with the acceptance probability decreasing over time. SA has been widely applied to the TSP and remains a popular choice due to its simplicity and effectiveness.
+- *Simulated Annealing* (SA), introduced by Kirkpatrick, Gelatt, and Vecchi in 1983, is inspired by the annealing process in metallurgy. SA probabilistically accepts worse solutions to escape local optima, with the acceptance probability decreasing over time. SA has been widely applied to the TSP and remains a popular choice due to its simplicity and effectiveness.
 
-- Genetic Algorithms (GA), introduced by John Holland in the 1970s, are based on the principles of natural selection and genetics. GAs operate on a population of potential solutions, applying selection, crossover, and mutation operators to evolve better solutions over successive generations. GAs have been extensively studied and applied to the TSP, with numerous variants and hybrid approaches proposed to enhance performance.
+- *Genetic Algorithms* (GA), introduced by John Holland in the 1970s, are based on the principles of natural selection and genetics. GAs operate on a population of potential solutions, applying selection, crossover, and mutation operators to evolve better solutions over successive generations. GAs have been extensively studied and applied to the TSP, with numerous variants and hybrid approaches proposed to enhance performance.
 
 Each of these metaheuristic algorithms has been extensively studied and applied to different complex problems in varied domains, demonstrating varying degrees of success. Numerous comparative studies have been conducted to evaluate their performance on different instances of the TSP, providing valuable insights into their strengths and weaknesses. This project builds on this rich body of work by implementing and comparing these five metaheuristic algorithms in a unified framework, providing a comprehensive evaluation of their performance on the TSP.
 
@@ -743,7 +748,7 @@ This directory contains the frontend files served to the client.
 
 - **Python** is used to handle the backend and to model the metaheuristics. Specific packages used are _FastAPI_ for setting up the backend server and _NumPy_ for handling matrices.
 - **JavaScript** is used to handle RESTful API and visualization. Specific packages used are _p5.js_ for visualization in Canvas and _toxiclibs.js_ for physics components.
-- **Docker** is used to easily build and test the application in an platform Independent manner.
+- **Docker** is used to easily build and test the application in an platform independent manner.
 
 ### Assimilated Architecture
 
@@ -751,15 +756,13 @@ The workflow of the project is pretty simple, wherein the user starts by enterin
 
 The frontend sends the input graph and chosen model from the user to the backend server and subsequently receives the solution. Upon receiving the response, it uses rendering techniques and force-directed graph method to visualise the input graph and the solution path appropriately; further the UI presents the convergence chart for the given graph as produced by the metaheuristic model employed.
 
-\newpage
-
 # Comparative Study
 
-### Objective
+## Objective
 
 The objective of this comparative study is to evaluate the performance of five metaheuristic algorithms—Ant Colony Optimization (ACO), Genetic Algorithm (GA), Particle Swarm Optimization (PSO), Artificial Bee Colony (ABC), and Simulated Annealing (SA)—in solving the Traveling Salesman Problem (TSP). The comparison focuses on their convergence rates and effectiveness in finding the optimal or near-optimal solution.
 
-### Methodology
+## Methodology
 
 1. **Implementation**:
    - Each algorithm is implemented to solve the TSP, ensuring consistency in the problem instance and evaluation metrics.
@@ -774,7 +777,7 @@ The objective of this comparative study is to evaluate the performance of five m
    - **Convergence Speed**: The number of iterations required to reach the best solution.
    - **Robustness**: The consistency of the results over multiple runs.
 
-### Results
+## Results
 
 1. **Ant Colony Optimization (ACO)**:
    - Strengths: Strong performance in exploring and exploiting the search space, often finding high-quality solutions.
@@ -796,7 +799,7 @@ The objective of this comparative study is to evaluate the performance of five m
    - Strengths: Strong ability to escape local optima through probabilistic acceptance of worse solutions, leading to good global exploration.
    - Weaknesses: Convergence speed can be slow due to the gradual cooling schedule, requiring careful parameter tuning.
 
-### Conclusion
+## Inference
 
 The comparative study highlights that each algorithm has unique strengths and weaknesses in solving the TSP. ACO and ABC tend to find high-quality solutions due to their effective exploration and exploitation mechanisms. GA and PSO provide a good balance of convergence speed and solution quality but require careful parameter tuning. SA, while robust in escaping local optima, can be slower in converging to the best solution.
 
@@ -810,7 +813,7 @@ Overall, the choice of algorithm may depend on the specific requirements of the 
 
 \newpage
 
-# Scope for Future Research and Conclusion
+# Scope for Future Research
 
 1. **Enhanced Metaheuristic Models**: Explore and implement other advanced metaheuristic algorithms such as Harmony Search, Bat Algorithm, or Grey Wolf Optimizer. Comparative studies on their performance against the current models could yield interesting insights.
 
@@ -832,7 +835,7 @@ Overall, the choice of algorithm may depend on the specific requirements of the 
 
 10. **Educational Tools**: Develop educational modules or tutorials integrated within the application to help users understand the underlying principles of the algorithms and their application to optimization problems.
 
-## Conclusion
+# Conclusion
 
 This project successfully implements five metaheuristic models—Ant Colony Optimization, Particle Swarm Optimization, Artificial Bee Colony, Simulated Annealing, and Genetic Algorithms—to solve the Traveling Salesman Problem. The backend processes the graph data, applies the algorithms, and provides the best path solution, which is then visualized on the frontend.
 
@@ -847,7 +850,9 @@ Despite these successes, the project identifies several areas for future researc
 In conclusion, this project lays a robust foundation for solving optimization problems using metaheuristic models and provides ample opportunities for further research and development to enhance its capabilities and applications.
 \newpage
 
+
+<!-- \bibliographystyle{plain} --> 
+<!-- \bibliography{refs} --> 
+
+<!-- \bibliography -->
 # References
-
-Don't do it now
-
