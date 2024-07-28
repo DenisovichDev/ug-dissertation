@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/hapticdata/toxiclibsjs@0.3.2/build/toxiclibs.min.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/addons/p5.sound.min.js"></script> -->
     <link rel="stylesheet" type="text/css" href="../css/style.css">
@@ -12,9 +13,12 @@
     <main>
         <div class="container">
             <h1>Travelling Salesman Problem Solution</h1>
+            <div class="graph-viz" id="graph-viz"></div>
             <div id="graph-info">
             </div>
-            <div class="graph-viz" id="graph-viz"></div>
+            <div class="convergence-graph">
+                <canvas id="convergenceChart"></canvas>
+            </div>
         </div>
     </main>
     <script src="../js/graph-viz/sketch.js"></script>
@@ -22,5 +26,6 @@
     <script src="../js/graph-viz/cluster.js"></script>
     <script src="../js/graph-viz/graph.js"></script>
     <script src="../js/output.js"></script>
+    <script src="../js/convergence_chart.js"></script>
     </body>
 </html>

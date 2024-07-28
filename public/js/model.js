@@ -1,4 +1,5 @@
 const ACO_URL = "http://127.0.0.1:8000/aco";
+const GA_URL = "http://127.0.0.1:8000/ga";
 
 const modelSelect = document.getElementById('model-select');
 const acoForm = document.getElementById('aco-form');
