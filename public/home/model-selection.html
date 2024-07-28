@@ -3,43 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Select Metaheuristic Model</title>
+    <title>Model Selection - Metaheuristics Study</title>
     <link rel="stylesheet" href="../css/style.css">
     <script src="../js/api.js" defer></script>
     <script src="../js/model.js" defer></script>
 </head>
 <body>
     <div class="container">
-        <h1>Select TSP Model</h1>
+        <h1>Select Metaheuristic Model</h1>
         <form id="model-form">
             <label for="model-select">Choose a model:</label>
             <select id="model-select" name="model-select">
                 <option value="">--Select a model--</option>
                 <option value="aco">Ant Colony Optimization</option>
-                <option value="model2">Particle Swarm Optimization</option>
-                <option value="model3">Model 3</option>
+                <option value="ga">Genetic Algorithm</option>
+                <option value="pso">Particle Swarm Optimization</option>
+                <option value="sa">Simulated Annealing</option>
+                <option value="abc">Artificial Bee Colony</option>
             </select>
             <br>
             <div id="aco-form" class="hidden">
                 <h2>Ant Colony Optimization Parameters</h2>
-                <label for="n_ants">Number of ants:</label>
-                <input type="number" id="n_ants" name="n_ants" min="1" value="2">
-                <br>
-                <label for="n_best">Number of best ants:</label>
-                <input type="number" id="n_best" name="n_best" min="1" value="1">
-                <br>
-                <label for="n_iterations">Number of iterations:</label>
-                <input type="number" id="n_iterations" name="n_iterations" min="1" value="100">
-                <br>
-                <label for="decay">Pheromone decay rate:</label>
-                <input type="number" id="decay" name="decay" step="0.01" min="0" max="1" value="0.92">
-                <br>
-                <label for="alpha">Pheromone importance factor (alpha):</label>
-                <input type="number" id="alpha" name="alpha" min="1" value="1">
-                <br>
-                <label for="beta">Heuristic importance factor (beta):</label>
-                <input type="number" id="beta" name="beta" min="1" value="2">
-                <br>
+                <div class="parameter-form form">
+                    <div class="form-element">
+                        <label for="n_ants">Number of ants:</label>
+                        <input type="number" id="n_ants" name="n_ants" min="1" value="2">
+                    </div>
+                    <div class="form-element">
+                        <label for="n_best">Number of best ants:</label>
+                        <input type="number" id="n_best" name="n_best" min="1" value="1">
+                    </div>
+                    <div class="form-element">
+                        <label for="n_iterations">Number of iterations:</label>
+                        <input type="number" id="n_iterations" name="n_iterations" min="1" value="100">
+                    </div>
+                    <div class="form-element">
+                        <label for="decay">Pheromone decay rate:</label>
+                        <input type="number" id="decay" name="decay" step="0.01" min="0" max="1" value="0.92">
+                    </div>
+                    <div class="form-element">
+                        <label for="alpha">Pheromone importance factor (alpha):</label>
+                        <input type="number" id="alpha" name="alpha" min="1" value="1">
+                    </div>
+                    <div class="form-element">
+                        <label for="beta">Heuristic importance factor (beta):</label>
+                        <input type="number" id="beta" name="beta" min="1" value="2">
+                    </div>
+                </div>
             </div>
             <button type="submit">Submit</button>
         </form>

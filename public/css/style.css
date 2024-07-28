@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: Roboto, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f0f0f0;
@@ -8,7 +10,7 @@ body {
 .container {
     width: 70%;
     margin: 50px auto;
-    padding: 20px;
+    padding: 20px 3em;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     min-width: 30em;
@@ -21,14 +23,41 @@ body {
     justify-content: center;
 }
 
-h1, h2 {
+h1, h2, h3 {
     text-align: center;
+    font-family: "Montserrat", sans-serif;
+}
+
+h1 {
+    font-weight: 600;
+    margin-bottom: 1.5em;
+}
+
+h2 {
+    font-weight: 500;
+}
+
+h3 {
+    font-weight: 500;
+    text-align: left;
+    text-transform: uppercase;
 }
 
 form {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.form.parameter-form {
+    width: 80%;
+    margin: 0 auto;
+}
+.form-element {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }
 
 textarea, select, input[type="text"], input[type="number"], button {

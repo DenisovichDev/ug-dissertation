@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const selectedModel = localStorage.getItem('selectedModel');
     const tspSol = JSON.parse(localStorage.getItem('tspSolution'));
 
-    graphInfoDiv.innerHTML = `<strong>Selected Model:</strong> <p>${selectedModel}</p><br>
+    graphInfoDiv.innerHTML = `<h3>Selected Model:</h3> <p>${selectedModel}</p><br>
 
-        <strong>Solution to TSP:</strong> <p>Path: ${JSON.stringify(tspSol.path)}<br>Cost: ${tspSol.cost}</p>`;
+        <h3>Solution to TSP:</h3> <p><strong>Path</strong>: ${JSON.stringify(tspSol.path)}<br><strong>Cost</strong>: ${tspSol.cost}</p>`;
 
 });
