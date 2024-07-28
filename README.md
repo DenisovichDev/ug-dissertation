@@ -6,9 +6,9 @@ Our final year dissertation project. The topic, at least for now, "Metaheuristic
 
 - [x] Ant Colony Optimization (ACO)  @Ra20r
 - [x] Particle Swarm Optimisation (PSO)  @Ra20r
-- [ ] Artificial Bee Colony (ABC)  @Ra20r
+- [x] Artificial Bee Colony (ABC)  @Ra20r
 - [x] Genetic Algorithm (GA)  @denisovichdev
-- [ ] Simulated Annealing (SA)  @denisovichdev
+- [x] Simulated Annealing (SA)  @denisovichdev
 
 ## To-Do
 
