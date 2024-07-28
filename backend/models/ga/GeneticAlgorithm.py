@@ -2,7 +2,7 @@ import numpy as np
 import random
 from tqdm import tqdm
 from utils.convergence import Convergence
-from time import time
+import time
 
 class GeneticAlgorithm:
     def __init__(self, distances, population_size, mutation_rate, n_generations, elitism_size=1, backend_test=False):

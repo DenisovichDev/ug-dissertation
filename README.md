@@ -75,6 +75,17 @@ Our final year dissertation project. The topic, at least for now, "Metaheuristic
         - "n_bees": number of bees in the colony (int)
         - "n_iterations": number of iterations the algorithm will run (int)
         - "limit": limit for the number of iterations a bee can stay in the employed phase (int)
+  - /sa
+    - Purpose: Takes graph and other parameters and runs the Simulated Annealing (SA) model to solve the Traveling Salesman Problem (TSP) and return the optimal path.
+    - Params:
+      - "graph": dictionary containing graph data
+        - "nodes": list of nodes (nodes are integers)
+        - "edges": list of tuples (node, node, weight), weights can be floating
+        - "check": "u" if the graph is undirected, "d" otherwise
+      - "params": dictionary containing data for
+        - "n_iterations": number of iterations the algorithm will run (int)
+        - "initial_temp": initial temperature for the annealing process (float)
+        - "cooling_rate": rate at which the temperature decreases (float)
   - /generate_complete_graph
     - Purpose: Generate a random complete graph for given number of vertices
     - Params:
