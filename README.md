@@ -64,6 +64,17 @@ Our final year dissertation project. The topic, at least for now, "Metaheuristic
         - "w": inertia weight to control the impact of previous velocities on the current velocity (float, optional, default=0.5)
         - "c1": cognitive parameter, the factor for personal best (float, optional, default=1)
         - "c2": social parameter, the factor for global best (float, optional, default=2)
+  - /abc
+    - Purpose: Takes graph and other parameters and runs the Artificial Bee Colony (ABC) model to solve the TSP and return the optimal path
+    - Params:
+      - "graph": dictionary containing graph data
+        - "nodes": list of nodes (nodes are integers)
+        - "edges": list of tuples (node, node, weight), weights can be floating
+        - "check": "u" if the graph is undirected, "d" otherwise
+      - "params": dictionary containing data for
+        - "n_bees": number of bees in the colony (int)
+        - "n_iterations": number of iterations the algorithm will run (int)
+        - "limit": limit for the number of iterations a bee can stay in the employed phase (int)
   - /generate_complete_graph
     - Purpose: Generate a random complete graph for given number of vertices
     - Params:

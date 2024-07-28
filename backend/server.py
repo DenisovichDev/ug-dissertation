@@ -4,6 +4,7 @@ from graph.input import create_adjacency_matrix
 from models.aco.AntColony import AntColony
 from models.ga.GeneticAlgorithm import GeneticAlgorithm
 from models.pso.ParticleSwarm import ParticleSwarmOptimization
+from models.abc.ArtificialBeeColony import ArtificialBeeColony
 from utils.convert_to_native_type import convert_numpy_types
 from utils.generate_random_input import generate_complete_weighted_graph
 import numpy as np
@@ -23,6 +24,29 @@ app.add_middleware(
 async def aco(params: dict, graph: dict):
     graph = create_adjacency_matrix(graph["nodes"], graph["edges"], graph["check"])
     meta_h = AntColony(graph[0], params["n_ants"], params["n_best"], params["n_iterations"], params["decay"], params["alpha"], params["beta"])
+    r = meta_h.run()
+    response = {
+        "path": r[0],
+        "cost": r[1],
+        "convergence_data": r[2],
+        "convergence_rate": r[3],
+        "time_elapsed": r[4]
+    }
+    if r[1] == np.inf:
+        response = {
+            "path": [],
+            "cost": 0.0,
+            "convergence_data": [],
+            "convergence_rate": 0.0,
+            "time_elapsed": 0.0
+        }
+    response = convert_numpy_types(response)
+    return response
+
+@app.post("/abc")
+async def aco(params: dict, graph: dict):
+    graph = create_adjacency_matrix(graph["nodes"], graph["edges"], graph["check"])
+    meta_h = ArtificialBeeColony(graph[0], params["n_bees"], params["n_iterations"], params["n_iterations"], params["limit"])
     r = meta_h.run()
     response = {
         "path": r[0],
