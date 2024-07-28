@@ -2,7 +2,7 @@ import numpy as np
 import random
 from tqdm import tqdm
 from utils.convergence import Convergence
-from time import time
+import time
 
 """
     Initialize the Ant Colony Optimization algorithm.
