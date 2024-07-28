@@ -5,7 +5,7 @@ Our final year dissertation project. The topic, at least for now, "Metaheuristic
 ## Metaheuristic Models
 
 - [x] Ant Colony Optimization (ACO)  @Ra20r
-- [ ] Particle Swarm Optimisation (PSO)  @Ra20r
+- [x] Particle Swarm Optimisation (PSO)  @Ra20r
 - [ ] Artificial Bee Colony (ABC)  @Ra20r
 - [x] Genetic Algorithm (GA)  @denisovichdev
 - [ ] Simulated Annealing (SA)  @denisovichdev
@@ -51,6 +51,19 @@ Our final year dissertation project. The topic, at least for now, "Metaheuristic
         - `"mutation_rate"`: probability of mutation for each individual (float)
         - `"n_generations"`: number of generations the algorithm will run (int)
         - `"elitism_size"`: number of top individuals to carry over to the next generation unchanged (int)
+  - /pso
+    - Purpose: Takes graph and other parameters and runs the Particle Swarm Optimization (PSO) model to solve the TSP and return the optimal path
+    - Params:
+      - "graph": dictionary containing graph data
+        - "nodes": list of nodes (nodes are integers)
+        - "edges": list of tuples (node, node, weight), weights can be floating
+        - "check": "u" if the graph is undirected, "d" otherwise
+      - "params": dictionary containing data for
+        - "n_particles": number of particles in the swarm (int)
+        - "n_iterations": number of iterations the algorithm will run (int)
+        - "w": inertia weight to control the impact of previous velocities on the current velocity (float, optional, default=0.5)
+        - "c1": cognitive parameter, the factor for personal best (float, optional, default=1)
+        - "c2": social parameter, the factor for global best (float, optional, default=2)
   - /generate_complete_graph
     - Purpose: Generate a random complete graph for given number of vertices
     - Params:
