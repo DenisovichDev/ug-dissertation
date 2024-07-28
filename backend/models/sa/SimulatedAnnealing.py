@@ -27,7 +27,7 @@ class SimulatedAnnealing:
         temperature = self.initial_temp
         time_a = time.time()
 
-        for iteration in tqdm(range(self.n_iterations), desc="Simulated Annealing..."):
+        for iteration in tqdm(range(self.n_iterations), desc="cooling hot metal..."):
             new_solution = self.get_neighbor(current_solution)
             new_distance = self.calculate_distance(new_solution)
             delta = new_distance - current_distance
@@ -44,8 +44,10 @@ class SimulatedAnnealing:
 
         if self.backend_test:
             self.convergence.plot_convergence()
-
-        return best_solution, best_distance, self.convergence.convergence_data, self.convergence.calculate_convergence_rate(), time_b - time_a
+        best_path = []
+        for i in range(len(best_solution)-1):
+            best_path.append((best_solution[i], best_solution[i+1]))
+        return best_path, best_distance, self.convergence.convergence_data, self.convergence.calculate_convergence_rate(), time_b - time_a
 
     def random_solution(self):
         """

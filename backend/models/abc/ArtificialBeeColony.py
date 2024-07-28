@@ -61,7 +61,7 @@ class ArtificialBeeColony:
         trials = np.zeros(self.n_bees)
 
         time_a = time.time()
-        for iteration in tqdm(range(self.n_iterations), desc="employed bees..."):
+        for iteration in tqdm(range(self.n_iterations), desc="employing bees..."):
             for i in range(self.n_bees):
                 new_path = self.generate_new_path(self.food_sources[i])
                 new_fitness = self.calculate_fitness(new_path)
@@ -101,7 +101,10 @@ class ArtificialBeeColony:
 
         if self.backend_test:
             self.convergence.plot_convergence()
-        return best_path, 1 / (1 + best_fitness), self.convergence.convergence_data, self.convergence.calculate_convergence_rate(), time_b - time_a
+        best_circuit = []
+        for i in range(len(best_path)-1):
+            best_circuit.append((best_path[i], best_path[i+1]))
+        return best_circuit, 1 / (1 + best_fitness), self.convergence.convergence_data, self.convergence.calculate_convergence_rate(), time_b - time_a
 
     def generate_new_path(self, path):
         """
