@@ -50,7 +50,7 @@ async def generate(data: dict):
 @app.post("/ga")
 async def ga(params: dict, graph: dict):
     graph = create_adjacency_matrix(graph["nodes"], graph["edges"], graph["check"])
-    meta_h = GeneticAlgorithm(graph[0], params["population_size"], params["mutation_rate"], params["n_iterations"], params["elitism_size"])
+    meta_h = GeneticAlgorithm(graph[0], params["population_size"], params["mutation_rate"], params["n_generations"], params["elitism_size"])
     r = meta_h.run()
     response = {
         "path": r[0],
