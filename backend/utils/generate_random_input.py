@@ -62,4 +62,4 @@ if __name__ == "__main__":
     # Adjust manually or command line argument
     # Argument #1 is vertices, #2 is edges
     num_vertices = 100 if len(sys.argv) <= 1 else int(sys.argv[1])
-    generate_complete_weighted_graph(num_vertices)
+    generate_complete_weighted_graph(num_vertices, "u")

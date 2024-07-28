@@ -1,9 +1,11 @@
 import numpy as np
 import random
 from tqdm import tqdm
+from utils.convergence import Convergence
+from time import time
 
 class GeneticAlgorithm:
-    def __init__(self, distances, population_size, mutation_rate, n_generations, elitism_size=1):
+    def __init__(self, distances, population_size, mutation_rate, n_generations, elitism_size=1, backend_test=False):
         """
         Initialize the Genetic Algorithm for the TSP.
 
@@ -20,6 +22,8 @@ class GeneticAlgorithm:
         self.elitism_size = elitism_size
         self.num_cities = distances.shape[0]
         self.population = self.initialize_population()
+        self.convergence = Convergence()
+        self.backend_test = backend_test
 
     def initialize_population(self):
         """
@@ -41,8 +45,8 @@ class GeneticAlgorithm:
         """
         best_tour = None
         best_distance = np.inf
-
-        for generation in tqdm(range(self.n_generations), desc="Generations"):
+        time_a = time.time()
+        for generation in tqdm(range(self.n_generations), desc="generations..."):
             self.population = self.evolve_population()
             current_best_tour = self.get_best_tour()
             current_best_distance = self.tour_distance(current_best_tour)
@@ -50,8 +54,12 @@ class GeneticAlgorithm:
             if current_best_distance < best_distance:
                 best_tour = current_best_tour
                 best_distance = current_best_distance
+            self.convergence.add_iteration(generation, best_distance)
+        time_b = time.time()
 
-        return best_tour, best_distance
+        if self.backend_test:
+            self.convergence.plot_convergence()
+        return best_tour, best_distance, self.convergence.convergence_data, self.convergence.calculate_convergence_rate(), time_b - time_a
 
     def evolve_population(self):
         """

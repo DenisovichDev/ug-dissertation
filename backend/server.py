@@ -25,27 +25,21 @@ async def aco(params: dict, graph: dict):
     r = meta_h.run()
     response = {
         "path": r[0],
-        "cost": r[1]
+        "cost": r[1],
+        "convergence_data": r[2],
+        "convergence_rate": r[3],
+        "time_elapsed": r[4]
     }
     if r[1] == np.inf:
         response = {
             "path": [],
-            "cost": 0.0
+            "cost": 0.0,
+            "convergence_data": [],
+            "convergence_rate": 0.0,
+            "time_elapsed": 0.0
         }
     response = convert_numpy_types(response)
-    with open("backend/data/output/graph.txt", "w") as f:
-        f.write(f"{str(r[0])}\n")
-        f.write(str(r[1]))
     return response
-
-@app.post("/generate_complete_graph")
-async def generate(data: dict):
-    vertices = data["num_vertices"]
-    t = data["type"]
-    graph = generate_complete_weighted_graph(vertices, t)
-    return {
-        "graph": graph
-    }
 
 @app.post("/ga")
 async def ga(params: dict, graph: dict):
@@ -54,17 +48,20 @@ async def ga(params: dict, graph: dict):
     r = meta_h.run()
     response = {
         "path": r[0],
-        "cost": r[1]
+        "cost": r[1],
+        "convergence_data": r[2],
+        "convergence_rate": r[3],
+        "time_elapsed": r[4]
     }
     if r[1] == np.inf:
         response = {
             "path": [],
-            "cost": 0.0
+            "cost": 0.0,
+            "convergence_data": [],
+            "convergence_rate": 0.0,
+            "time_elapsed": 0.0
         }
     response = convert_numpy_types(response)
-    with open("backend/data/output/graph.txt", "w") as f:
-        f.write(f"{str(r[0])}\n")
-        f.write(str(r[1]))
     return response
 
 @app.post("/generate_complete_graph")

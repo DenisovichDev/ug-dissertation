@@ -1,6 +1,8 @@
 import numpy as np
 import random
 from tqdm import tqdm
+from utils.convergence import Convergence
+from time import time
 
 """
     Initialize the Ant Colony Optimization algorithm.
@@ -24,7 +26,7 @@ from tqdm import tqdm
 """
 
 class AntColony:
-    def __init__(self, distances, n_ants, n_best, n_iterations, decay, alpha=1, beta=1):
+    def __init__(self, distances, n_ants, n_best, n_iterations, decay, alpha=1, beta=1, backend_test=False):
         self.distances = distances
         self.pheromone = np.ones(self.distances.shape) / len(distances)
         self.pheromone[self.distances == 0] = 0
@@ -35,6 +37,8 @@ class AntColony:
         self.decay = decay
         self.alpha = alpha
         self.beta = beta
+        self.backend_test = backend_test
+        self.convergence = Convergence()
 
     def run(self):
         """
@@ -44,7 +48,9 @@ class AntColony:
         """
         shortest_path = None
         all_time_shortest_path = ([], np.inf)
-        for _ in range(self.n_iterations):
+
+        time_a = time.time()
+        for iteration in tqdm(range(self.n_iterations), desc="moving ants..."):
             all_paths = self.gen_all_paths()
             self.spread_pheronome(all_paths, self.n_best)
             try:
@@ -54,7 +60,12 @@ class AntColony:
             if shortest_path[1] < all_time_shortest_path[1]:
                 all_time_shortest_path = shortest_path            
             self.pheromone *= self.decay
-        return all_time_shortest_path
+            self.convergence.add_iteration(iteration, all_time_shortest_path[1])
+        time_b = time.time()
+
+        if self.backend_test:
+            self.convergence.plot_convergence()
+        return all_time_shortest_path[0], all_time_shortest_path[1], self.convergence.convergence_data, self.convergence.calculate_convergence_rate(), time_b - time_a
 
     def spread_pheronome(self, all_paths, n_best):
         """

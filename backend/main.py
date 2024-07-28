@@ -2,12 +2,16 @@ from models.aco.AntColony import AntColony
 from models.ga.GeneticAlgorithm import GeneticAlgorithm
 from graph.input import create_adjacency_matrix, get_graph
 
-nodes, edges, check = get_graph("graph.txt")
+graph_file = input("Enter name of graph file: ")
+
+nodes, edges, check = get_graph(f"{graph_file}.txt")
 mat, nodes = create_adjacency_matrix(nodes, edges, check)
-# ac = AntColony(mat, 2, 1, 100, 0.95, 1, 2)
-ga = GeneticAlgorithm(mat, 100, 0.01, 500, 5)
-path = ga.run()
+# model = AntColony(mat, 2, 1, 100, 0.95, 1, 2, True)
+model = GeneticAlgorithm(mat, 100, 0.01, 500, 5, True)
+path = model.run()
 
 with open("backend/data/output/graph.txt", "w") as f:
     f.write(f"{str(path[0])}\n")
-    f.write(str(path[1]))
+    f.write(f"{str(path[1])}\n")
+    f.write(f"{str(path[2])}\n")
+    f.write(f"{str(path[3])}\n")

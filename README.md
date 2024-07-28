@@ -59,4 +59,4 @@ Our final year dissertation project. The topic, at least for now, "Metaheuristic
 
 ## How To Run
 
-```docker-compose up```
+```docker compose up```
