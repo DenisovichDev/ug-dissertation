@@ -39,6 +39,18 @@ Our final year dissertation project. The topic, at least for now, "Metaheuristic
         - "decay": pheromone decay rate (float)
         - "alpha": pheromone importance factor (int)
         - "beta": heuristic importance factor (int)
+  - **/ga**
+    - **Purpose**: Takes graph and other parameters and runs the Genetic Algorithm (GA) model to solve the TSP and return the optimal path
+    - **Params**:
+      - `"graph"`: dictionary containing graph data
+        - `"nodes"`: list of nodes (nodes are integers)
+        - `"edges"`: list of tuples (node, node, weight), weights can be floating
+        - `"check"`: `"u"` if the graph is undirected, `"d"` otherwise
+      - `"params"`: dictionary containing data for
+        - `"population_size"`: number of individuals in the population (int)
+        - `"mutation_rate"`: probability of mutation for each individual (float)
+        - `"n_generations"`: number of generations the algorithm will run (int)
+        - `"elitism_size"`: number of top individuals to carry over to the next generation unchanged (int)
   - /generate_complete_graph
     - Purpose: Generate a random complete graph for given number of vertices
     - Params:
