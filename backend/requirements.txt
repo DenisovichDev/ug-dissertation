@@ -4,3 +4,4 @@ networkx
 numpy==1.26.4
 tqdm==4.66.1
 seaborn
+scipy
