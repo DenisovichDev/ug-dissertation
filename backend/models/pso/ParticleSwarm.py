@@ -62,7 +62,7 @@ class ParticleSwarmOptimization:
         best_path = []
         for i in range(len(global_best_position)-1):
             best_path.append((global_best_position[i], global_best_position[i+1]))
-        return global_best_position, global_best_distance, self.convergence.convergence_data, self.convergence.calculate_convergence_rate(), time_b - time_a
+        return best_path, global_best_distance, self.convergence.convergence_data, self.convergence.calculate_convergence_rate(), time_b - time_a
 
     def update_position(self, position, velocity):
         # Translate velocity into permutations

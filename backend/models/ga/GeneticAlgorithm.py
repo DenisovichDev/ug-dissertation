@@ -62,7 +62,7 @@ class GeneticAlgorithm:
         best_path = []
         for i in range(len(best_tour)-1):
             best_path.append((best_tour[i], best_tour[i+1]))
-        return best_tour, best_distance, self.convergence.convergence_data, self.convergence.calculate_convergence_rate(), time_b - time_a
+        return best_path, best_distance, self.convergence.convergence_data, self.convergence.calculate_convergence_rate(), time_b - time_a
 
     def evolve_population(self):
         """
