@@ -152,24 +152,4 @@ class GeneticAlgorithm:
         """
         return min(self.population, key=self.tour_distance)
 
-# # Example Usage
-# if __name__ == "__main__":
-#     distances = np.array([
-#         [0, 2, 9, 10, 7],
-#         [2, 0, 6, 4, 3],
-#         [9, 6, 0, 8, 5],
-#         [10, 4, 8, 0, 6],
-#         [7, 3, 5, 6, 0]
-#     ])
-
-#     population_size = 100   # Number of individuals in the population
-#     mutation_rate = 0.01    # Probability of mutation for each individual
-#     n_generations = 500     # Number of generations the algorithm will run
-#     elitism_size = 5        # Number of top individuals to carry over to the next generation unchanged
-
-#     ga_tsp = GeneticAlgorithmTSP(distances, population_size, mutation_rate, n_generations, elitism_size)
-#     best_tour, best_distance = ga_tsp.run()
-
-#     print("Best tour found:", best_tour)
-#     print("Distance of the best tour:", best_distance)
 
