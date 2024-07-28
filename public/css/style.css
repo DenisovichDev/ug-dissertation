@@ -60,6 +60,11 @@ form {
     justify-content: space-between;
 }
 
+.loading {
+    width: 2em;
+    margin: 0 auto;
+}
+
 textarea, select, input[type="text"], input[type="number"], button {
     margin: 10px 0;
     padding: 10px;

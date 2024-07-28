@@ -22,6 +22,8 @@
                 <option value="abc">Artificial Bee Colony</option>
             </select>
             <br>
+
+            <!-- MODEL: ACO -->
             <div id="aco-form" class="hidden">
                 <h2>Ant Colony Optimization Parameters</h2>
                 <div class="parameter-form form">
@@ -35,11 +37,11 @@
                     </div>
                     <div class="form-element">
                         <label for="n_iterations">Number of iterations:</label>
-                        <input type="number" id="n_iterations" name="n_iterations" min="1" value="100">
+                        <input type="number" id="n_iterations" name="n_iterations" min="1" value="500">
                     </div>
                     <div class="form-element">
                         <label for="decay">Pheromone decay rate:</label>
-                        <input type="number" id="decay" name="decay" step="0.01" min="0" max="1" value="0.92">
+                        <input type="number" id="decay" name="decay" step="0.01" min="0" max="1" value="0.95">
                     </div>
                     <div class="form-element">
                         <label for="alpha">Pheromone importance factor (alpha):</label>
@@ -51,8 +53,99 @@
                     </div>
                 </div>
             </div>
+
+            <!-- MODEL: GA -->
+            <div id="ga-form" class="hidden">
+                <h2>Genetic Algorithm Parameters</h2>
+                <div class="parameter-form form">
+                    <div class="form-element">
+                        <label for="population_size">Population size:</label>
+                        <input type="number" id="population_size" name="population_size" min="1" value="100">
+                    </div>
+                    <div class="form-element">
+                        <label for="mutation_rate">Mutation rate:</label>
+                        <input type="number" id="mutation_rate" name="mutation_rate" step="0.01" min="0" max="1" value="0.01">
+                    </div>
+                    <div class="form-element">
+                        <label for="n_generations">Number of generations:</label>
+                        <input type="number" id="n_generations" name="n_generations" min="1" value="500">
+                    </div>
+                    <div class="form-element">
+                        <label for="elitism_size">Elitism size:</label>
+                        <input type="number" id="elitism_size" name="elitism_size" min="1" value="5">
+                    </div>
+                </div>
+            </div>
+
+            <!-- MODEL: PSO -->
+            <div id="pso-form" class="hidden">
+               <h2>Particle Swarm Optimization Parameters</h2>
+                <div class="parameter-form form">
+                    <div class="form-element">
+                        <label for="n_particles">Number of particles:</label>
+                        <input type="number" id="n_particles" name="n_particles" min="1" value="30">
+                    </div>
+                    <div class="form-element">
+                        <label for="n_iterations_pso">Number of iterations:</label>
+                        <input type="number" id="n_iterations_pso" name="n_iterations_pso" min="1" value="500">
+                    </div>
+                    <div class="form-element">
+                        <label for="w">Inertia weight (w):</label>
+                        <input type="number" id="w" name="w" step="0.01" min="0" max="1" value="0.5">
+                    </div>
+                    <div class="form-element">
+                        <label for="c1">Cognitive parameter (c1):</label>
+                        <input type="number" id="c1" name="c1" step="0.01" min="0" value="1">
+                    </div>
+                    <div class="form-element">
+                        <label for="c2">Social parameter (c2):</label>
+                        <input type="number" id="c2" name="c2" step="0.01" min="0" value="2">
+                    </div>
+                </div>
+            </div>
+
+            <!-- MODEL: SA -->
+            <div id="sa-form" class="hidden">
+                <h2>Simulated Annealing Parameters</h2>
+                <div class="parameter-form form">
+                    <div class="form-element">
+                        <label for="n_iterations_sa">Number of iterations:</label>
+                        <input type="number" id="n_iterations_sa" name="n_iterations_sa" min="1" value="500">
+                    </div>
+                    <div class="form-element">
+                        <label for="initial_temp">Initial temperature:</label>
+                        <input type="number" id="initial_temp" name="initial_temp" step="0.01" min="0" value="1000">
+                    </div>
+                    <div class="form-element">
+                        <label for="cooling_rate">Cooling rate:</label>
+                        <input type="number" id="cooling_rate" name="cooling_rate" step="0.01" min="0" max="1" value="0.95">
+                    </div>
+                </div>
+            </div>
+
+            <!-- MODEL: ABC -->
+            <div id="abc-form" class="hidden">
+                <h2>Artificial Bee Colony Parameters</h2>
+                <div class="parameter-form form">
+                    <div class="form-element">
+                        <label for="n_bees">Number of bees:</label>
+                        <input type="number" id="n_bees" name="n_bees" min="1" value="10">
+                    </div>
+                    <div class="form-element">
+                        <label for="n_iterations_abc">Number of iterations:</label>
+                        <input type="number" id="n_iterations_abc" name="n_iterations_abc" min="1" value="500">
+                    </div>
+                    <div class="form-element">
+                        <label for="limit">Limit:</label>
+                        <input type="number" id="limit" name="limit" min="1" value="10">
+                    </div>
+                </div>
+            </div>
+
             <button type="submit">Submit</button>
+            <img src="/public/assets/loading.gif" class="loading hidden"/>
         </form>
     </div>
 </body>
 </html>
+ 

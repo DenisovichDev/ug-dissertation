@@ -8,6 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     graphInfoDiv.innerHTML = `<h3>Selected Model:</h3> <p>${selectedModel}</p><br>
 
-        <h3>Solution to TSP:</h3> <p><strong>Path</strong>: ${JSON.stringify(tspSol.path)}<br><strong>Objective Value</strong>: ${tspSol.cost}<br><strong>Convergence Rate</strong>: ${tspSol.convergence_rate}</p>`;
+        <h3>Solution to TSP:</h3> <p><strong>Path</strong>: ${JSON.stringify(tspSol.path)}<br><strong>Objective Value</strong>: ${tspSol.cost}<br><strong>Convergence Rate</strong>: ${tspSol.convergence_rate}<br><strong>Time Elapsed</strong>: ${tspSol.time_elapsed}</p>`;
 
 });
